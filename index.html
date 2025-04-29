@@ -19,6 +19,15 @@
     .animate-fadeInUp {
       animation: fadeInUp 0.8s ease-out forwards;
     }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    @keyframes backgroundWave {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
     /* Hover effect for cards */
     .card-hover {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -33,6 +42,28 @@
       background-position: center;
       background-size: cover;
     }
+    /* Email and passport hover effects */
+    .email-link, .passport-info {
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .email-link:hover, .passport-info:hover {
+      color: #ffd700;
+      transform: scale(1.1);
+      text-decoration: underline;
+    }
+    /* Passport icon hover effect */
+    .passport-icon {
+      transition: transform 0.3s ease;
+    }
+    .passport-icon:hover {
+      transform: rotate(15deg);
+    }
+    /* Contact section background animation */
+    #contact {
+      background: linear-gradient(45deg, #4b5bd4, #6a1b9a, #4b5bd4);
+      background-size: 200% 200%;
+      animation: backgroundWave 15s ease infinite;
+    }
     /* Mobile navbar adjustments */
     @media (max-width: 640px) {
       .navbar-container {
@@ -45,7 +76,6 @@
         space-y-4;
         margin-top: 1rem;
       }
-      /* Ensure the About section photo and text stack properly on mobile */
       .about-container {
         flex-direction: column;
         text-align: center;
@@ -93,9 +123,8 @@
         </div>
         <div class="md:w-1/2 animate-fadeInUp">
           <p class="text-lg leading-relaxed">
-            A results-driven professional with strong leadership skills, specializing in business development. Experienced in client engagement, product demonstrations, and strategic marketing to drive growth and enhance brand presence. Skilled in identifying market opportunities and implementing data-driven strategies to maximize revenue and business expansion.
+            Proactive Business Development Executive with 1 years of experience. Successfully generated 150+ high-quality B2B leads and sales opportunities. Delivered impactful presentations to C-level executives, aligning ERP solutions with client needs. Conducted 50+ ERP software demonstrations, driving client engagement and conversion. Acted as an ERP subject matter expert, ensuring in-depth product knowledge during client interactions. Collaborated on strategic campaigns, enhancing product visibility and brand recognition. Conducted market analysis and competitor research to refine value propositions and support sales strategies. Proficient in Zoho CRM and Books for lead tracking and follow-ups. Adept at social media lead generation and cold calling campaigns.
           </p>
-          <p class="mt-4 text-lg">Passionate powerlifter and kabaddi player, dedicated to maintaining peak physical fitness through rigorous training and disciplined diet.</p>
         </div>
       </div>
     </div>
@@ -151,15 +180,13 @@
           <h3 class="text-2xl font-semibold">Invenger Technologies Inc.</h3>
           <p class="text-gray-600">Jul 2024 – Present</p>
           <ul class="list-disc ml-6 mt-4">
-            <li>Proactive Business Development Executive with 1 year of experience.</li>
-            <li>Successfully generated over 150 high-quality B2B leads and sales opportunities.</li>
-            <li>Delivered impactful presentations to C-level executives, aligning ERP solutions with client needs.</li>
-            <li>Conducted 50+ ERP software demonstrations, driving client engagement and conversion.</li>
-            <li>Served as an ERP subject matter expert, ensuring in-depth product knowledge during client interactions.</li>
-            <li>Collaborated on strategic campaigns, enhancing product visibility and brand recognition.</li>
-            <li>Conducted market analysis and competitor research to refine value propositions and support sales strategies.</li>
-            <li>Proficient in Zoho CRM and Books for efficient lead tracking and follow-ups.</li>
-            <li>Adept at leveraging social media for lead generation and executing effective cold calling campaigns.</li>
+            <li>Initiated cold calls and outreach, resulting in a 30% increase in high-quality leads and sales opportunities.</li>
+            <li>Delivered impactful presentations and product pitches to C-level executives, effectively aligning ERP solutions with client business needs.</li>
+            <li>Led comprehensive ERP software demonstrations, emphasizing key features and real-world applications, resulting in a 40% increase in client engagement and conversion.</li>
+            <li>Showcased expertise as an ERP subject matter expert, ensuring precise and in-depth product knowledge during client interactions.</li>
+            <li>Collaborated with marketing teams on strategic campaigns, boosting product visibility, brand recognition, and market positioning.</li>
+            <li>Conducted thorough market analysis and competitor research, identifying trends and refining value propositions to support sales strategies.</li>
+            <li>Maintained CRM systems to track leads, manage client interactions, and generate actionable insights for sales forecasting and reporting.</li>
           </ul>
         </div>
         <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.2s">
@@ -201,17 +228,17 @@
   <!-- Contact Section -->
   <section id="contact" class="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-4xl font-bold mb-10">Contact Me</h2>
+      <h2 class="text-4xl font-bold mb-10 animate-fadeInUp">Contact Me</h2>
       <div class="flex flex-col items-center space-y-4 animate-fadeInUp">
-        <p><i class="fas fa-envelope mr-2"></i> dsouzamackwinjoy@gmail.com</p>
+        <p><i class="fas fa-envelope mr-2"></i> <a href="mailto:dsouzamackwinjoy@gmail.com" class="email-link">dsouzamackwinjoy@gmail.com</a></p>
         <p><i class="fas fa-phone mr-2"></i> 9901179203</p>
-        <p><i class="fas fa-passport mr-2"></i> Y4773735</p>
+        <p><i class="fas fa-passport mr-2 passport-icon"></i> <span class="passport-info">Y4773735</span></p>
         <p><i class="fas fa-map-marker-alt mr-2"></i> Sunview Posarma House, Pilar Village, Mudarangadi</p>
         <p><i class="fab fa-linkedin mr-2"></i> <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank" class="underline hover:text-yellow-300">mackwin-joy-dsouza</a></p>
       </div>
       <div class="mt-8">
-        <h3 class="text-2xl font-semibold mb-4">Languages</h3>
-        <p>English, Hindi, Kannada</p>
+        <h3 class="text-2xl font-semibold mb-4 animate-fadeInUp">Languages</h3>
+        <p class="animate-fadeInUp">English, Hindi, Kannada</p>
       </div>
     </div>
   </section>
