@@ -1,0 +1,291 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mackwin Joy Dsouza - Business Development Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Custom animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    /* Hover effect for cards */
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    /* Parallax background */
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+    }
+    /* Mobile navbar adjustments */
+    @media (max-width: 640px) {
+      .navbar-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .navbar-menu {
+        flex-direction: column;
+        space-y-4;
+        margin-top: 1rem;
+      }
+      /* Ensure the About section photo and text stack properly on mobile */
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    /* Profile image styling */
+    .profile-img {
+      object-fit: cover;
+      border: 4px solid #fff;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+  <!-- Navbar -->
+  <nav class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white fixed w-full z-10 shadow-lg">
+    <div class="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center navbar-container">
+      <h1 class="text-2xl font-bold">Mackwin Joy Dsouza</h1>
+      <ul class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 navbar-menu">
+        <li><a href="#home" class="hover:text-yellow-300 transition">Home</a></li>
+        <li><a href="#about" class="hover:text-yellow-300 transition">About</a></li>
+        <li><a href="#skills" class="hover:text-yellow-300 transition">Skills</a></li>
+        <li><a href="#experience" class="hover:text-yellow-300 transition">Experience</a></li>
+        <li><a href="#education" class="hover:text-yellow-300 transition">Education</a></li>
+        <li><a href="#contact" class="hover:text-yellow-300 transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="h-screen flex items-center justify-center parallax" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
+    <div class="text-center text-white bg-black bg-opacity-50 p-10 rounded-lg animate-fadeInUp">
+      <h1 class="text-5xl font-bold mb-4">Mackwin Joy Dsouza</h1>
+      <p class="text-2xl mb-6">Business Development Executive</p>
+      <a href="#contact" class="bg-yellow-400 text-gray-800 px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10">About Me</h2>
+      <div class="flex flex-col md:flex-row items-center about-container">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <img src="[INSERT_UPLOADED_PROFILE_PHOTO_URL_HERE]" alt="Profile" class="rounded-full w-64 h-64 mx-auto shadow-lg profile-img">
+          <!-- Replace [INSERT_UPLOADED_PROFILE_PHOTO_URL_HERE] with the actual URL of the uploaded profile photo -->
+        </div>
+        <div class="md:w-1/2 animate-fadeInUp">
+          <p class="text-lg leading-relaxed">
+            A results-driven professional with strong leadership skills, specializing in business development. Experienced in client engagement, product demonstrations, and strategic marketing to drive growth and enhance brand presence. Skilled in identifying market opportunities and implementing data-driven strategies to maximize revenue and business expansion.
+          </p>
+          <p class="mt-4 text-lg">Passionate powerlifter and kabaddi player, dedicated to maintaining peak physical fitness through rigorous training and disciplined diet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10">Skills</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp">
+          <i class="fas fa-file-excel text-3xl text-green-500 mb-4"></i>
+          <h3 class="text-xl font-semibold">Microsoft Excel & Word</h3>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.1s">
+          <i class="fas fa-database text-3xl text-blue-500 mb-4"></i>
+          <h3 class="text-xl font-semibold">ODOO ERP</h3>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.2s">
+          <i class="fas fa-ad text-3xl text-purple-500 mb-4"></i>
+          <h3 class="text-xl font-semibold">Social Media Marketing</h3>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.3s">
+          <i class="fas fa-handshake text-3xl text-yellow-500 mb-4"></i>
+          <h3 class="text-xl font-semibold">Client Relationship Management</h3>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.4s">
+          <i class="fas fa-chart-line text-3xl text-red-500 mb-4"></i>
+          <h3 class="text-xl font-semibold">Sales & Promotion Strategies</h3>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.5s">
+          <i class="fas fa-sync-alt text-3xl text-teal-500 mb-4"></i>
+          <h3 class="text-xl font-semibold">Adaptability & Flexibility</h3>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.6s">
+          <i class="fas fa-clock text-3xl text-orange-500 mb-4"></i>
+          <h3 class="text-xl font-semibold">Time Management</h3>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.7s">
+          <i class="fas fa-users text-3xl text-indigo-500 mb-4"></i>
+          <h3 class="text-xl font-semibold">Team Collaboration</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10">Experience</h2>
+      <div class="space-y-8">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover animate-fadeInUp">
+          <h3 class="text-2xl font-semibold">Invenger Technologies Inc.</h3>
+          <p class="text-gray-600">Jul 2024 – Present</p>
+          <ul class="list-disc ml-6 mt-4">
+            <li>Proactive Business Development Executive with 1 year of experience.</li>
+            <li>Successfully generated over 150 high-quality B2B leads and sales opportunities.</li>
+            <li>Delivered impactful presentations to C-level executives, aligning ERP solutions with client needs.</li>
+            <li>Conducted 50+ ERP software demonstrations, driving client engagement and conversion.</li>
+            <li>Served as an ERP subject matter expert, ensuring in-depth product knowledge during client interactions.</li>
+            <li>Collaborated on strategic campaigns, enhancing product visibility and brand recognition.</li>
+            <li>Conducted market analysis and competitor research to refine value propositions and support sales strategies.</li>
+            <li>Proficient in Zoho CRM and Books for efficient lead tracking and follow-ups.</li>
+            <li>Adept at leveraging social media for lead generation and executing effective cold calling campaigns.</li>
+          </ul>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.2s">
+          <h3 class="text-2xl font-semibold">Acrene Solutions Private Limited</h3>
+          <p class="text-gray-600">Previous Role</p>
+          <ul class="list-disc ml-6 mt-4">
+            <li>Recorded and organized cash/bank transactions using Zoho Books.</li>
+            <li>Tracked and managed operational expenses.</li>
+            <li>Generated leads through social media platforms.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Certifications Section -->
+  <section id="education" class="py-20 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10">Education & Certifications</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp">
+          <h3 class="text-2xl font-semibold">Education</h3>
+          <p class="mt-2"><strong>MBA (Finance & Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
+          <p class="mt-2"><strong>Bachelor of Commerce</strong> - MGM College, Udupi (2019–2022) | 74.4%</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.2s">
+          <h3 class="text-2xl font-semibold">Certifications</h3>
+          <ul class="list-disc ml-6 mt-4">
+            <li>Power BI</li>
+            <li>SPSS</li>
+            <li>Advanced Microsoft Excel</li>
+            <li>Social Media Marketing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-10">Contact Me</h2>
+      <div class="flex flex-col items-center space-y-4 animate-fadeInUp">
+        <p><i class="fas fa-envelope mr-2"></i> dsouzamackwinjoy@gmail.com</p>
+        <p><i class="fas fa-phone mr-2"></i> 9901179203</p>
+        <p><i class="fas fa-passport mr-2"></i> Passport No: Y4773735</p>
+        <p><i class="fas fa-map-marker-alt mr-2"></i> Sunview Posarma House, Pilar Village, Mudarangadi</p>
+        <p><i class="fab fa-linkedin mr-2"></i> <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank" class="underline hover:text-yellow-300">mackwin-joy-dsouza</a></p>
+      </div>
+      <div class="mt-8">
+        <h3 class="text-2xl font-semibold mb-4">Languages</h3>
+        <p>English, Hindi, Kannada</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 Mackwin Joy Dsouza. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for navbar links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Animation trigger on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fadeInUp');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-fadeInUp').forEach(element => {
+      observer.observe(element);
+    });
+  </script>
+</body>
+</html>
