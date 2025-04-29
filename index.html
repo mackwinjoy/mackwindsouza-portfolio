@@ -2,127 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mackwin Joy Dsouza - Portfolio</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    header {
-      background-color: #1e90ff;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    section {
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    h1, h2 {
-      color: #1e90ff;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    .contact {
-      background: #e0f0ff;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 8px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #1e90ff;
-      color: white;
-    }
-    .download-resume {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background-color: #1e90ff;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prathik C Kulal - Portfolio</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+
   <header>
-    <h1>Mackwin Joy Dsouza</h1>
-    <p>Business Development Executive</p>
+    <nav>
+      <h1 class="logo">Prathik C Kulal</h1>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <section>
-    <h2>Objective</h2>
-    <p>A results-driven professional with strong leadership skills, specializing in business development. Experienced in client engagement, product demonstrations, and strategic marketing to drive growth and enhance brand presence. Skilled in identifying market opportunities and implementing data-driven strategies to maximize revenue and business expansion.</p>
-
-    <h2>Skills</h2>
-    <ul>
-      <li>Microsoft Excel, Word</li>
-      <li>ODOO ERP</li>
-      <li>Social Media Marketing</li>
-      <li>Sales and Promotion Strategies</li>
-      <li>Client Relationship Management</li>
-      <li>Adaptability & Flexibility</li>
-      <li>Time Management</li>
-      <li>Team Collaboration</li>
-    </ul>
-
-    <h2>Experience</h2>
-    <h3>Invenger Technologies Inc. (Jul 2024 – Present)</h3>
-    <ul>
-      <li>Conducted cold calls to identify potential clients and generate leads.</li>
-      <li>Delivered presentations to higher management showcasing business solutions and growth strategies.</li>
-      <li>Performed ERP product demonstrations and acted as a functionality expert.</li>
-      <li>Supported marketing efforts and conducted market research.</li>
-    </ul>
-
-    <h3>Acrene Solutions Private Limited</h3>
-    <ul>
-      <li>Recorded and organized cash/bank transactions using Zoho Books.</li>
-      <li>Tracked and managed operational expenses.</li>
-      <li>Generated leads through social media platforms.</li>
-    </ul>
-
-    <h2>Education</h2>
-    <ul>
-      <li>MBA (Finance & Marketing) - Sahyadri College (2022–2024) | CGPA: 8.46</li>
-      <li>Bachelor of Commerce - MGM College, Udupi (2019–2022) | 74.4%</li>
-    </ul>
-
-    <h2>Certifications</h2>
-    <ul>
-      <li>Power BI</li>
-      <li>SPSS</li>
-      <li>Advanced Microsoft Excel</li>
-      <li>Social Media Marketing</li>
-    </ul>
-
-    <h2>Languages</h2>
-    <ul>
-      <li>English, Kannada, Hindi, Konkani, Tulu</li>
-    </ul>
-
-    <h2>Hobbies</h2>
-    <p>Passionate powerlifter and kabaddi player. Dedicated to maintaining peak physical fitness through rigorous training and disciplined diet. Regularly engage in powerlifting and kabaddi to stay strong, agile, and competitive.</p>
-
-    <div class="contact">
-      <h2>Contact</h2>
-      <p><strong>Email:</strong> dsouzamackwinjoy@gmail.com</p>
-      <p><strong>Location:</strong> Sunview Posarma House, Pilar Village, Mudarangadi</p>
-      <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/mackwin-joy-dsouza" target="_blank">mackwin-joy-dsouza</a></p>
-      <a href="resume.pdf" class="download-resume" download>Download Resume (PDF)</a>
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h2>Hello, I’m Prathik C Kulal</h2>
+      <p>Business Development Executive | Marketing & Sales | Odoo ERP</p>
     </div>
   </section>
 
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>
+      A results-driven professional with strong leadership skills, specializing in business development.
+      Experienced in client engagement, product demonstrations, and strategic marketing to drive growth and enhance brand presence.
+    </p>
+  </section>
+
+  <section id="projects" class="section">
+    <h2>Skills & Experience</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Skills</h3>
+        <ul style="text-align:left;">
+          <li>Microsoft Excel, Word</li>
+          <li>ODOO ERP</li>
+          <li>Social Media Marketing</li>
+          <li>Client Relationship Management</li>
+          <li>Time Management, Team Collaboration</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>Experience</h3>
+        <p><strong>Invenger Technologies Inc. (Jul 2024 – Present)</strong></p>
+        <p>Cold calling, presentations, ERP demos, marketing support.</p>
+        <p><strong>Acrene Solutions Pvt Ltd</strong></p>
+        <p>Handled Zoho Books, expense tracking, social media lead generation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact Me</h2>
+    <p>Email: dsouzamackwinjoy@gmail.com</p>
+    <p>Location: Sunview Posarma House, Pilar Village, Mudarangadi</p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank">mackwin-joy-dsouza</a></p>
+  </section>
+
   <footer>
-    &copy; 2025 Mackwin Joy Dsouza
+    <p>&copy; 2025 Prathik C Kulal. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
