@@ -45,6 +45,11 @@
         space-y-4;
         margin-top: 1rem;
       }
+      /* Ensure the About section photo and text stack properly on mobile */
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+      }
     }
     /* Profile image styling */
     .profile-img {
@@ -82,10 +87,10 @@
   <section id="about" class="py-20 bg-white">
     <div class="container mx-auto px-4">
       <h2 class="text-4xl font-bold text-center mb-10">About Me</h2>
-      <div class="flex flex-col md:flex-row items-center">
+      <div class="flex flex-col md:flex-row items-center about-container">
         <div class="md:w-1/2 mb-8 md:mb-0">
-          <img src="[INSERT_PROFILE_PHOTO_URL_HERE]" alt="Profile" class="rounded-full w-64 h-64 mx-auto shadow-lg profile-img">
-          <!-- Replace [INSERT_PROFILE_PHOTO_URL_HERE] with the actual URL of the profile photo after hosting it -->
+          <img src="[INSERT_UPLOADED_PROFILE_PHOTO_URL_HERE]" alt="Profile" class="rounded-full w-64 h-64 mx-auto shadow-lg profile-img">
+          <!-- Replace [INSERT_UPLOADED_PROFILE_PHOTO_URL_HERE] with the actual URL of the uploaded profile photo -->
         </div>
         <div class="md:w-1/2 animate-fadeInUp">
           <p class="text-lg leading-relaxed">
@@ -147,10 +152,15 @@
           <h3 class="text-2xl font-semibold">Invenger Technologies Inc.</h3>
           <p class="text-gray-600">Jul 2024 – Present</p>
           <ul class="list-disc ml-6 mt-4">
-            <li>Conducted cold calls to identify potential clients and generate leads.</li>
-            <li>Delivered presentations to higher management showcasing business solutions and growth strategies.</li>
-            <li>Performed ERP product demonstrations and acted as a functionality expert.</li>
-            <li>Supported marketing efforts and conducted market research.</li>
+            <li>Proactive Business Development Executive with 1 year of experience.</li>
+            <li>Successfully generated over 150 high-quality B2B leads and sales opportunities.</li>
+            <li>Delivered impactful presentations to C-level executives, aligning ERP solutions with client needs.</li>
+            <li>Conducted 50+ ERP software demonstrations, driving client engagement and conversion.</li>
+            <li>Served as an ERP subject matter expert, ensuring in-depth product knowledge during client interactions.</li>
+            <li>Collaborated on strategic campaigns, enhancing product visibility and brand recognition.</li>
+            <li>Conducted market analysis and competitor research to refine value propositions and support sales strategies.</li>
+            <li>Proficient in Zoho CRM and Books for efficient lead tracking and follow-ups.</li>
+            <li>Adept at leveraging social media for lead generation and executing effective cold calling campaigns.</li>
           </ul>
         </div>
         <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover animate-fadeInUp" style="animation-delay: 0.2s">
@@ -195,12 +205,14 @@
       <h2 class="text-4xl font-bold mb-10">Contact Me</h2>
       <div class="flex flex-col items-center space-y-4 animate-fadeInUp">
         <p><i class="fas fa-envelope mr-2"></i> dsouzamackwinjoy@gmail.com</p>
+        <p><i class="fas fa-phone mr-2"></i> 9901179203</p>
+        <p><i class="fas fa-passport mr-2"></i> Passport No: Y4773735</p>
         <p><i class="fas fa-map-marker-alt mr-2"></i> Sunview Posarma House, Pilar Village, Mudarangadi</p>
         <p><i class="fab fa-linkedin mr-2"></i> <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank" class="underline hover:text-yellow-300">mackwin-joy-dsouza</a></p>
       </div>
       <div class="mt-8">
         <h3 class="text-2xl font-semibold mb-4">Languages</h3>
-        <p>English, Kannada, Hindi, Konkani, Tulu</p>
+        <p>English, Hindi, Kannada</p>
       </div>
     </div>
   </section>
