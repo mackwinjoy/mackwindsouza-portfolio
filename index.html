@@ -17,20 +17,31 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+    /* Smooth hover transitions */
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .btn-hover:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
   </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
   <!-- Navbar -->
   <nav class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white fixed w-full z-10 shadow-lg">
     <div class="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center">
-      <h1 class="text-2xl font-bold">Mackwin Joy Dsouza</h1>
+      <h1 class="text-2xl font-bold flex items-center">
+        <i class="fas fa-briefcase mr-2"></i> Mackwin Joy Dsouza
+      </h1>
       <ul class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mt-4 sm:mt-0">
-        <li><a href="#home" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Home">Home</a></li>
-        <li><a href="#about" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="About">About</a></li>
-        <li><a href="#skills" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Skills">Skills</a></li>
-        <li><a href="#experience" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Experience">Experience</a></li>
-        <li><a href="#education" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Education">Education</a></li>
-        <li><a href="#contact" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Contact">Contact</a></li>
+        <li><a href="#home" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Home"><i class="fas fa-home mr-1"></i> Home</a></li>
+        <li><a href="#about" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="About"><i class="fas fa-user mr-1"></i> About</a></li>
+        <li><a href="#skills" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Skills"><i class="fas fa-tools mr-1"></i> Skills</a></li>
+        <li><a href="#experience" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Experience"><i class="fas fa-suitcase mr-1"></i> Experience</a></li>
+        <li><a href="#education" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Education"><i class="fas fa-graduation-cap mr-1"></i> Education</a></li>
+        <li><a href="#contact" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Contact"><i class="fas fa-envelope mr-1"></i> Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -38,20 +49,37 @@
   <!-- Hero Section -->
   <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
     <div class="text-center text-white bg-black bg-opacity-50 p-8 sm:p-10 rounded-lg animate-[fadeInUp_0.8s_ease-out_forwards]">
+      <svg class="w-24 h-24 mx-auto mb-4 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </svg>
       <h1 class="text-4xl sm:text-5xl font-bold mb-4">Mackwin Joy Dsouza</h1>
       <p class="text-xl sm:text-2xl mb-6">Business Development Executive</p>
-      <a href="#contact" class="bg-yellow-400 text-gray-800 px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Contact Me">Get in Touch</a>
-      <p class="text-sm italic mt-2 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">Scroll down to explore more about my work and journey ↓</p>
+      <a href="#contact" class="bg-yellow-400 text-gray-800 px-6 py-3 rounded-full font-semibold btn-hover transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Contact Me">Get in Touch</a>
+      <p class="text-sm italic mt-4 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">Scroll down to explore my journey ↓</p>
     </div>
   </section>
+
+  <!-- Wave Separator -->
+  <div class="w-full overflow-hidden leading-none">
+    <svg class="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#ffffff" class="dark:fill-gray-800"></path>
+    </svg>
+  </div>
 
   <!-- About Section -->
   <section id="about" class="py-16 sm:py-20 bg-white dark:bg-gray-800">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100">About Me</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100 flex items-center justify-center">
+        <i class="fas fa-user-circle text-indigo-500 mr-2"></i> About Me
+      </h2>
       <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-8 md:mb-0 flex justify-center">
-          <img src="https://media.licdn.com/dms/image/v2/D5603AQHeQyGKTGPS6A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1695443825900?e=1751500800&v=beta&t=j-7RB9ILYBXLJ5EklI7mGXSS7a155ztxnFEwmMouauw" alt="Profile of Mackwin Joy Dsouza" class="rounded-full w-64 h-64 object-cover border-4 border-white shadow-lg">
+          <div class="relative">
+            <img src="https://media.licdn.com/dms/image/v2/D5603AQHeQyGKTGPS6A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1695443825900?e=1751500800&v=beta&t=j-7RB9ILYBXLJ5EklI7mGXSS7a155ztxnFEwmMouauw" alt="Profile of Mackwin Joy Dsouza" class="rounded-full w-64 h-64 object-cover border-4 border-white shadow-lg">
+            <svg class="absolute -bottom-4 -right-4 w-16 h-16 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
         </div>
         <div class="md:w-1/2 text-base sm:text-lg leading-relaxed animate-[fadeInUp_0.8s_ease-out_forwards] delay-200 text-center md:text-left">
           <p>
@@ -62,68 +90,77 @@
     </div>
   </section>
 
+  <!-- Wave Separator -->
+  <div class="w-full overflow-hidden leading-none">
+    <svg class="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#f3f4f6" class="dark:fill-gray-700"></path>
+    </svg>
+  </div>
+
   <!-- Skills Section -->
-  <section id="skills" class="py-16 sm:py-20 bg-gray-100 dark:bg-gray-700">
+  <section id="skills" class="py-16 sm:py-20 bg-gray-100 dark:bg-gray-700 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-attachment: fixed;">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100">Skills</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100 flex items-center justify-center">
+        <i class="fas fa-tools text-green-500 mr-2"></i> Skills
+      </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">
           <i class="fas fa-search text-3xl text-green-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Lead Generation & Prospecting</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300">
           <i class="fas fa-handshake text-3xl text-blue-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Sales Negotiation & Deal Closure</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-400">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-400">
           <i class="fas fa-briefcase text-3xl text-purple-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">B2B Sales & Strategic Partnerships</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-500">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-500">
           <i class="fas fa-users text-3xl text-yellow-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Client Relationship Management</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-600">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-600">
           <i class="fas fa-chart-bar text-3xl text-red-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Market Research & Competitive Analysis</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-700">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-700">
           <i class="fas fa-file-alt text-3xl text-teal-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Proposal Writing & Pitching</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-800">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-800">
           <i class="fas fa-database text-3xl text-orange-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">CRM Tools (Zoho, Odoo)</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-900">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-900">
           <i class="fas fa-chart-line text-3xl text-indigo-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Revenue Growth Strategy</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1000">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1000">
           <i class="fas fa-envelope text-3xl text-green-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Cold Calling & Email Campaigns</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1100">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1100">
           <i class="fas fa-table text-3xl text-blue-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Data Analysis & Reporting (Excel, Google Sheets)</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1200">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1200">
           <i class="fas fa-microphone text-3xl text-purple-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Presentation & Communication Skills</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1300">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1300">
           <i class="fas fa-user-check text-3xl text-yellow-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Customer-Centric Approach</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1400">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1400">
           <i class="fas fa-sync-alt text-3xl text-red-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Adaptability & Resilience</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1500">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1500">
           <i class="fas fa-users-cog text-3xl text-teal-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Team Collaboration</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1600">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1600">
           <i class="fas fa-clock text-3xl text-orange-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Time Management & Multitasking</h3>
         </div>
@@ -131,13 +168,24 @@
     </div>
   </section>
 
+  <!-- Wave Separator -->
+  <div class="w-full overflow-hidden leading-none">
+    <svg class="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#ffffff" class="dark:fill-gray-800"></path>
+    </svg>
+  </div>
+
   <!-- Experience Section -->
-  <section id="experience" class="py-16 sm:py-20 bg-white dark:bg-gray-800">
+  <section id="experience" class="py-16 sm:py-20 bg-white dark:bg-gray-800 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1516321310768-90f0fdce4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-attachment: fixed;">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100">Experience</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100 flex items-center justify-center">
+        <i class="fas fa-suitcase text-blue-500 mr-2"></i> Experience
+      </h2>
       <div class="space-y-8">
-        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">
-          <h3 class="text-xl sm:text-2xl font-semibold">Invenger Technologies Inc.</h3>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200 bg-opacity-90">
+          <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
+            <i class="fas fa-building mr-2 text-indigo-500"></i> Invenger Technologies Inc.
+          </h3>
           <p class="text-gray-600 dark:text-gray-400">Jul 2024 – Present</p>
           <ul class="list-disc ml-6 mt-4 text-base sm:text-lg">
             <li>Initiated cold calls and outreach, resulting in a 30% increase in high-quality leads and sales opportunities.</li>
@@ -149,8 +197,10 @@
             <li>Maintained CRM systems to track leads, manage client interactions, and generate actionable insights for sales forecasting and reporting.</li>
           </ul>
         </div>
-        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300">
-          <h3 class="text-xl sm:text-2xl font-semibold">Acrene Solutions Private Limited</h3>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300 bg-opacity-90">
+          <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
+            <i class="fas fa-building mr-2 text-indigo-500"></i> Acrene Solutions Private Limited
+          </h3>
           <p class="text-gray-600 dark:text-gray-400">Previous Role</p>
           <ul class="list-disc ml-6 mt-4 text-base sm:text-lg">
             <li>Recorded and organized cash/bank transactions using Zoho Books.</li>
@@ -162,18 +212,31 @@
     </div>
   </section>
 
+  <!-- Wave Separator -->
+  <div class="w-full overflow-hidden leading-none">
+    <svg class="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#f3f4f6" class="dark:fill-gray-700"></path>
+    </svg>
+  </div>
+
   <!-- Education & Certifications Section -->
-  <section id="education" class="py-16 sm:py-20 bg-gray-100 dark:bg-gray-700">
+  <section id="education" class="py-16 sm:py-20 bg-gray-100 dark:bg-gray-700 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1524178232363-64f36cf33d79?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-attachment: fixed;">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards]">Education & Certifications</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] flex items-center justify-center">
+        <i class="fas fa-graduation-cap text-purple-500 mr-2"></i> Education & Certifications
+      </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100">
-          <h3 class="text-xl sm:text-2xl font-semibold">Education</h3>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100 bg-opacity-90">
+          <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
+            <i class="fas fa-university mr-2 text-blue-500"></i> Education
+          </h3>
           <p class="mt-2 text-base sm:text-lg"><strong>MBA (Finance & Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
           <p class="mt-2 text-base sm:text-lg"><strong>Bachelor of Commerce</strong> - MGM College, Udupi (2019–2022) | 74.4%</p>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:-translate-y-2 hover:shadow-xl transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">
-          <h3 class="text-xl sm:text-2xl font-semibold">Certifications</h3>
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200 bg-opacity-90">
+          <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
+            <i class="fas fa-certificate mr-2 text-green-500"></i> Certifications
+          </h3>
           <ul class="list-disc ml-6 mt-4 text-base sm:text-lg">
             <li>Power BI</li>
             <li>SPSS</li>
@@ -185,19 +248,43 @@
     </div>
   </section>
 
+  <!-- Wave Separator -->
+  <div class="w-full overflow-hidden leading-none">
+    <svg class="w-full h-20" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#4b5bd4" class="dark:fill-gray-900"></path>
+    </svg>
+  </div>
+
   <!-- Contact Section -->
   <section id="contact" class="py-16 sm:py-20 text-white" style="background: linear-gradient(45deg, #4b5bd4, #6a1b9a, #4b5bd4); background-size: 200% 200%; animation: backgroundWave 15s ease infinite;">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100">Contact Me</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100 flex items-center justify-center">
+        <i class="fas fa-envelope-open-text text-yellow-400 mr-2"></i> Contact Me
+      </h2>
       <div class="flex flex-col items-center space-y-4 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">
-        <p><i class="fas fa-envelope mr-2"></i> <a href="/cdn-cgi/l/email-protection#9dfaedf1ebe4fff3fffdf5e9f7f0f4f1e7def9f3fff7f2b0fdf1f3" class="hover:text-yellow-300 hover:underline hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Email Mackwin Joy Dsouza"><span class="__cf_email__" data-cfemail="3d594e5248475c505c5e564a54535752447d5a505c5451135e5250">[email&#160;protected]</span></a></p>
-        <p><i class="fas fa-phone mr-2"></i> 9901179203</p>
-        <p><i class="fas fa-passport mr-2 hover:rotate-[15deg] transition-transform duration-300"></i> <span class="hover:text-yellow-300 hover:underline hover:scale-110 transition-all duration-300">Y4773735</span></p>
-        <p><i class="fas fa-map-marker-alt mr-2"></i> Sunview Posarma House, Pilar Village, Mudarangadi</p>
-        <p><i class="fab fa-linkedin mr-2"></i> <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank" class="underline hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="LinkedIn Profile">mackwin-joy-dsouza</a></p>
+        <p class="flex items-center">
+          <i class="fas fa-envelope mr-2 text-green-400"></i>
+          <a href="mailto:dsouzamackwinjoy@gmail.com" class="hover:text-yellow-300 hover:underline btn-hover transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Email Mackwin Joy Dsouza">dsouzamackwinjoy@gmail.com</a>
+        </p>
+        <p class="flex items-center">
+          <i class="fas fa-phone mr-2 text-blue-400"></i> 9901179203
+        </p>
+        <p class="flex items-center">
+          <i class="fas fa-passport mr-2 text-purple-400 hover:rotate-[15deg] transition-transform duration-300"></i>
+          <span class="hover:text-yellow-300 hover:underline btn-hover transition-all duration-300">Y4773735</span>
+        </p>
+        <p class="flex items-center">
+          <i class="fas fa-map-marker-alt mr-2 text-red-400"></i> Sunview Posarma House, Pilar Village, Mudarangadi
+        </p>
+        <p class="flex items-center">
+          <i class="fab fa-linkedin mr-2 text-indigo-400"></i>
+          <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank" class="underline hover:text-yellow-300 btn-hover transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="LinkedIn Profile">mackwin-joy-dsouza</a>
+        </p>
       </div>
       <div class="mt-8">
-        <h3 class="text-xl sm:text-2xl font-semibold mb-4 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300">Languages</h3>
+        <h3 class="text-xl sm:text-2xl font-semibold mb-4 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300 flex items-center justify-center">
+          <i class="fas fa-language mr-2 text-orange-400"></i> Languages
+        </h3>
         <p class="animate-[fadeInUp_0.8s_ease-out_forwards] delay-400 text-base sm:text-lg">English, Hindi, Kannada</p>
       </div>
     </div>
@@ -206,11 +293,13 @@
   <!-- Footer -->
   <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
     <div class="container mx-auto px-4 text-center">
-      <p>© 2025 Mackwin Joy Dsouza. All rights reserved.</p>
+      <p class="flex items-center justify-center">
+        <i class="fas fa-copyright mr-2"></i> © 2025 Mackwin Joy Dsouza. All rights reserved.
+      </p>
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // Smooth scroll for navbar links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -234,5 +323,5 @@
       observer.observe(element);
     });
   </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93adef0f4a68bf6b',t:'MTc0NjQyMzk0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLayout',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
