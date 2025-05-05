@@ -7,20 +7,42 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
-    /* Custom animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Animation Keyframes */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-    @keyframes fadeInLeft {
-      from { opacity: 0; transform: translateX(-20px); }
+    @keyframes slideLeft {
+      from { opacity: 0; transform: translateX(30px); }
       to { opacity: 1; transform: translateX(0); }
     }
-    @keyframes backgroundWave {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Animation Classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transition: all 0.8s ease-out;
+    }
+    .animate-on-scroll.fade-in.visible {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    .animate-on-scroll.slide-left.visible {
+      animation: slideLeft 0.8s ease-out forwards;
+    }
+    .animate-on-scroll.slide-up.visible {
+      animation: slideUp 0.8s ease-out forwards;
+    }
+    .animate-on-scroll.zoom-in.visible {
+      animation: zoomIn 0.8s ease-out forwards;
+    }
+
     /* Smooth hover transitions */
     .card-hover:hover {
       transform: translateY(-8px);
@@ -29,7 +51,8 @@
     .btn-hover:hover {
       transform: scale(1.05);
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
+   之旅
+
     /* Hamburger menu animation */
     .hamburger.active .bar:nth-child(2) {
       opacity: 0;
@@ -40,10 +63,12 @@
     .hamburger.active .bar:nth-child(3) {
       transform: translateY(-8px) rotate(-45deg);
     }
+
     /* Consistent navbar styling */
     .nav-menu {
       transition: all 0.3s ease;
     }
+
     /* Speech bubble styling */
     .speech-bubble {
       position: relative;
@@ -69,24 +94,43 @@
     .dark .speech-bubble::after {
       border-top-color: #1f2937;
     }
+
+    /* Background wave animation for contact section */
+    @keyframes backgroundWave {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Ensure smooth performance on mobile */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-on-scroll {
+        transition: none;
+        animation: none;
+        opacity: 1;
+      }
+    }
+
+    /* Profile image styling */
+    .profile-img {
+      object-fit: cover;
+      object-position: center;
+    }
   </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
   <!-- Navbar with Hamburger Menu -->
   <nav class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white fixed w-full z-10 shadow-lg">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- Name/Logo -->
-      <h1 class="text-2xl font-bold flex items-center">
+      <h1 class="text-2xl font-bold flex items-center animate-on-scroll fade-in">
         <i class="fas fa-briefcase mr-2"></i> Mackwin Joy Dsouza
       </h1>
-      <!-- Hamburger Icon -->
       <div class="hamburger md:hidden flex flex-col cursor-pointer" onclick="toggleMenu()">
         <span class="bar block w-8 h-1 bg-white mb-2 transition-all duration-300"></span>
         <span class="bar block w-8 h-1 bg-white mb-2 transition-all duration-300"></span>
         <span class="bar block w-8 h-1 bg-white transition-all duration-300"></span>
       </div>
-      <!-- Navigation Links -->
-      <ul id="nav-menu" class="nav-menu hidden md:flex md:flex-row md:space-x-6 md:items-center md:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 flex-col items-center space-y-4 md:space-y-0 py-4 md:py-0">
+      <ul id="nav-menu" class="nav-menu hidden md:flex md:flex-row md:space-x-6 md:items-center md:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 flex-col items-center space-y-4 md:space-y-0 py-4 md:py-0 animate-on-scroll fade-in">
         <li><a href="#home" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Home"><i class="fas fa-home mr-1"></i> Home</a></li>
         <li><a href="#about" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="About"><i class="fas fa-user mr-1"></i> About</a></li>
         <li><a href="#skills" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Skills"><i class="fas fa-tools mr-1"></i> Skills</a></li>
@@ -99,11 +143,11 @@
 
   <!-- Hero Section -->
   <section id="home" class="min-h-screen flex items-center justify-center bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')">
-    <div class="text-center text-white bg-black bg-opacity-50 p-8 sm:p-10 rounded-lg animate-[fadeInUp_0.8s_ease-out_forwards]">
+    <div class="text-center text-white bg-black bg-opacity-50 p-8 sm:p-10 rounded-lg animate-on-scroll slide-up">
       <h1 class="text-4xl sm:text-5xl font-bold mb-4">Mackwin Joy Dsouza</h1>
       <p class="text-xl sm:text-2xl mb-6">Business Development Executive</p>
       <a href="#contact" class="bg-yellow-400 text-gray-800 px-6 py-3 rounded-full font-semibold btn-hover transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Contact Me">Get in Touch</a>
-      <p class="text-sm italic mt-4 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">Scroll down to explore my journey ↓</p>
+      <p class="text-sm italic mt-4 animate-on-scroll fade-in">Scroll down to explore my journey ↓</p>
     </div>
   </section>
 
@@ -117,45 +161,39 @@
   <!-- About Section -->
   <section id="about" class="py-16 sm:py-20 bg-white dark:bg-gray-800">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 animate-[fadeInUp_0.8s_ease-out_forwards] flex items-center justify-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 animate-on-scroll slide-up flex items-center justify-center">
         <i class="fas fa-user-circle text-indigo-500 mr-2"></i> About Me
       </h2>
       <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12">
-        <!-- Left Column: Profile Image and Quote -->
         <div class="lg:w-1/2 flex flex-col items-center">
-          <img src="https://media.licdn.com/dms/image/v2/D5603AQHeQyGKTGPS6A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1695443825900?e=1751500800&v=beta&t=j-7RB9ILYBXLJ5EklI7mGXSS7a155ztxnFEwmMouauw" alt="Profile of Mackwin Joy Dsouza" class="rounded-full w-64 h-64 object-cover border-4 border-white shadow-lg animate-[fadeInLeft_0.8s_ease-out_forwards]">
-          <div class="speech-bubble text-center animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">
+          <img src="https://media.licdn.com/dms/image/v2/D5603AQHeQyGKTGPS6A/profile-displayphoto-shrink_800_800/0/1695443825900?e=1752105600&v=beta&t=1uWEuvCK1jBeiarBmT4tSuC-vlTLLpoUo144sT3KYUw" alt="Profile of Mackwin Joy Dsouza" class="rounded-full w-64 h-64 profile-img border-4 border-white shadow-lg animate-on-scroll zoom-in">
+          <div class="speech-bubble text-center animate-on-scroll fade-in">
             <p class="text-base italic">"Driving business growth through strategic partnerships and client-focused solutions."</p>
           </div>
         </div>
-        <!-- Right Column: Key Points in Cards -->
         <div class="lg:w-1/2 space-y-6">
-          <!-- Experience Card -->
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInLeft_0.8s_ease-out_forwards] delay-300">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll slide-left">
             <div class="flex items-center mb-4">
               <i class="fas fa-suitcase text-3xl text-blue-500 mr-3"></i>
               <h3 class="text-xl font-semibold">Experience</h3>
             </div>
             <p class="text-base">1+ year as a Business Development Executive, generating 150+ B2B leads and conducting 50+ ERP software demos for C-level executives.</p>
           </div>
-          <!-- Skills Card -->
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInLeft_0.8s_ease-out_forwards] delay-400">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll slide-left">
             <div class="flex items-center mb-4">
               <i class="fas fa-tools text-3xl text-green-500 mr-3"></i>
               <h3 class="text-xl font-semibold">Skills</h3>
             </div>
             <p class="text-base">Proficient in Zoho and Odoo CRM, market analysis, cold calling, and strategic campaign collaboration for enhanced brand visibility.</p>
           </div>
-          <!-- Achievements Card -->
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInLeft_0.8s_ease-out_forwards] delay-500">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll slide-left">
             <div class="flex items-center mb-4">
               <i class="fas fa-trophy text-3xl text-yellow-500 mr-3"></i>
               <h3 class="text-xl font-semibold">Achievements</h3>
             </div>
             <p class="text-base">Increased client engagement by 40% through impactful presentations and refined sales strategies.</p>
           </div>
-          <!-- Download Resume Button -->
-          <div class="text-center mt-6 animate-[fadeInLeft_0.8s_ease-out_forwards] delay-600">
+          <div class="text-center mt-6 animate-on-scroll fade-in">
             <a href="resume.pdf" download class="bg-yellow-400 text-gray-800 px-6 py-3 rounded-full font-semibold btn-hover transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 inline-flex items-center" aria-label="Download Resume">
               <i class="fas fa-download mr-2"></i> Download Resume
             </a>
@@ -175,67 +213,67 @@
   <!-- Skills Section -->
   <section id="skills" class="py-16 sm:py-20 bg-gray-100 dark:bg-gray-700 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-attachment: fixed;">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100 flex items-center justify-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-on-scroll slide-up flex items-center justify-center">
         <i class="fas fa-tools text-green-500 mr-2"></i> Skills
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-search text-3xl text-green-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Lead Generation & Prospecting</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-handshake text-3xl text-blue-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Sales Negotiation & Deal Closure</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-400">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-briefcase text-3xl text-purple-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">B2B Sales & Strategic Partnerships</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-500">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-users text-3xl text-yellow-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Client Relationship Management</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-600">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-chart-bar text-3xl text-red-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Market Research & Competitive Analysis</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-700">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-file-alt text-3xl text-teal-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Proposal Writing & Pitching</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-800">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-database text-3xl text-orange-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">CRM Tools (Zoho, Odoo)</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-900">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-chart-line text-3xl text-indigo-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Revenue Growth Strategy</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1000">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-envelope text-3xl text-green-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Cold Calling & Email Campaigns</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1100">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-table text-3xl text-blue-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Data Analysis & Reporting (Excel, Google Sheets)</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1200">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-microphone text-3xl text-purple-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Presentation & Communication Skills</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1300">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-user-check text-3xl text-yellow-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Customer-Centric Approach</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1400">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-sync-alt text-3xl text-red-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Adaptability & Resilience</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1500">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-users-cog text-3xl text-teal-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Team Collaboration</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-1600">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll zoom-in">
           <i class="fas fa-clock text-3xl text-orange-500 mb-4"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Time Management & Multitasking</h3>
         </div>
@@ -253,11 +291,11 @@
   <!-- Experience Section -->
   <section id="experience" class="py-16 sm:py-20 bg-white dark:bg-gray-800 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1516321310768-90f0fdce4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-attachment: fixed;">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100 flex items-center justify-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-on-scroll slide-up flex items-center justify-center">
         <i class="fas fa-suitcase text-blue-500 mr-2"></i> Experience
       </h2>
       <div class="space-y-8">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200 bg-opacity-90">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll slide-left bg-opacity-90">
           <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
             <i class="fas fa-building mr-2 text-indigo-500"></i> Invenger Technologies Inc.
           </h3>
@@ -272,7 +310,7 @@
             <li>Maintained CRM systems to track leads, manage client interactions, and generate actionable insights for sales forecasting and reporting.</li>
           </ul>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300 bg-opacity-90">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll slide-left bg-opacity-90">
           <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
             <i class="fas fa-building mr-2 text-indigo-500"></i> Acrene Solutions Private Limited
           </h3>
@@ -297,18 +335,18 @@
   <!-- Education & Certifications Section -->
   <section id="education" class="py-16 sm:py-20 bg-gray-100 dark:bg-gray-700 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1524178232363-64f36cf33d79?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-attachment: fixed;">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] flex items-center justify-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 animate-on-scroll slide-up flex items-center justify-center">
         <i class="fas fa-graduation-cap text-purple-500 mr-2"></i> Education & Certifications
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100 bg-opacity-90">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll slide-left bg-opacity-90">
           <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
             <i class="fas fa-university mr-2 text-blue-500"></i> Education
           </h3>
           <p class="mt-2 text-base sm:text-lg"><strong>MBA (Finance & Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
           <p class="mt-2 text-base sm:text-lg"><strong>Bachelor of Commerce</strong> - MGM College, Udupi (2019–2022) | 74.4%</p>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200 bg-opacity-90">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover transition-all duration-300 animate-on-scroll slide-left bg-opacity-90">
           <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
             <i class="fas fa-certificate mr-2 text-green-500"></i> Certifications
           </h3>
@@ -333,10 +371,10 @@
   <!-- Contact Section -->
   <section id="contact" class="py-16 sm:py-20 text-white" style="background: linear-gradient(45deg, #4b5bd4, #6a1b9a, #4b5bd4); background-size: 200% 200%; animation: backgroundWave 15s ease infinite;">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-10 animate-[fadeInUp_0.8s_ease-out_forwards] delay-100 flex items-center justify-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-10 animate-on-scroll slide-up flex items-center justify-center">
         <i class="fas fa-envelope-open-text text-yellow-400 mr-2"></i> Contact Me
       </h2>
-      <div class="flex flex-col items-center space-y-4 animate-[fadeInUp_0.8s_ease-out_forwards] delay-200">
+      <div class="flex flex-col items-center space-y-4 animate-on-scroll fade-in">
         <p class="flex items-center">
           <i class="fas fa-envelope mr-2 text-green-400"></i>
           <a href="mailto:dsouzamackwinjoy@gmail.com" class="hover:text-yellow-300 hover:underline btn-hover transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Email Mackwin Joy Dsouza">dsouzamackwinjoy@gmail.com</a>
@@ -357,10 +395,10 @@
         </p>
       </div>
       <div class="mt-8">
-        <h3 class="text-xl sm:text-2xl font-semibold mb-4 animate-[fadeInUp_0.8s_ease-out_forwards] delay-300 flex items-center justify-center">
+        <h3 class="text-xl sm:text-2xl font-semibold mb-4 animate-on-scroll slide-up flex items-center justify-center">
           <i class="fas fa-language mr-2 text-orange-400"></i> Languages
         </h3>
-        <p class="animate-[fadeInUp_0.8s_ease-out_forwards] delay-400 text-base sm:text-lg">English, Hindi, Kannada</p>
+        <p class="animate-on-scroll fade-in text-base sm:text-lg">English, Hindi, Kannada</p>
       </div>
     </div>
   </section>
@@ -368,7 +406,7 @@
   <!-- Footer -->
   <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
     <div class="container mx-auto px-4 text-center">
-      <p class="flex items-center justify-center">
+      <p class="flex items-center justify-center animate-on-scroll fade-in">
         <i class="fas fa-copyright mr-2"></i> © 2025 Mackwin Joy Dsouza. All rights reserved.
       </p>
     </div>
@@ -400,16 +438,22 @@
       });
     });
 
-    // Animation trigger on scroll
+    // Intersection Observer for scroll-based animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add(entry.target.dataset.animation || 'animate-[fadeInUp_0.8s_ease-out_forwards]');
+          entry.target.classList.add('visible');
+          // Unobserve after animation to improve performance
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, {
+      threshold: 0.1, // Trigger when 10% of element is visible
+      rootMargin: '0px 0px -50px 0px' // Slight offset for smoother trigger
+    });
 
-    document.querySelectorAll('[class*="animate-"], [data-animation]').forEach(element => {
+    // Apply observer to all elements with animate-on-scroll class
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
       observer.observe(element);
     });
   </script>
