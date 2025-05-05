@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     /* Gradient Hover Button */
     .gradient-btn {
@@ -32,10 +33,40 @@
     /* Card Hover Effect */
     .card-hover {
       transition: all 0.3s ease;
+      background: #ffffff;
     }
     .card-hover:hover {
       transform: translateY(-8px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(145deg, #ffffff, #e6f0fa);
+    }
+    .dark .card-hover {
+      background: #1f2937;
+    }
+    .dark .card-hover:hover {
+      background: linear-gradient(145deg, #1f2937, #374151);
+    }
+
+    /* Icon Transition */
+    .icon-transition {
+      transition: transform 0.3s ease;
+    }
+    .icon-transition:hover {
+      transform: rotate(15deg) scale(1.2);
+    }
+
+    /* Animated Progress Bar */
+    .progress-bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4b5bd4, #6a1b9a);
+      transition: width 1.5s ease-in-out;
     }
 
     /* Hamburger Menu Animation */
@@ -135,11 +166,14 @@
         top: 100%;
         left: 0;
       }
+      .chart-container {
+        max-width: 100%;
+      }
     }
 
     /* Smooth Performance on Mobile */
     @media (prefers-reduced-motion: reduce) {
-      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section {
+      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section, .icon-transition, .progress-fill {
         transition: none !important;
         animation: none !important;
         transform: none !important;
@@ -154,6 +188,12 @@
       object-fit: cover;
       object-position: center;
     }
+
+    /* Chart Container */
+    .chart-container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
   </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
@@ -161,7 +201,7 @@
   <nav class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white fixed w-full z-10 shadow-lg">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold flex items-center" data-aos="fade-down">
-        <i class="fas fa-briefcase mr-2"></i> Mackwin Joy Dsouza
+        <i class="fas fa-briefcase mr-2 icon-transition"></i> Mackwin Joy Dsouza
       </h1>
       <div class="hamburger md:hidden flex flex-col cursor-pointer" onclick="toggleMenu()">
         <span class="bar block w-8 h-1 bg-white mb-2 transition-all duration-300"></span>
@@ -169,12 +209,12 @@
         <span class="bar block w-8 h-1 bg-white transition-all duration-300"></span>
       </div>
       <ul id="nav-menu" class="nav-menu hidden md:flex md:flex-row md:space-x-6 md:items-center md:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 flex-col items-center space-y-4 md:space-y-0 py-4 md:py-0" data-aos="fade-down">
-        <li><a href="#home" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Home"><i class="fas fa-home mr-1"></i> Home</a></li>
-        <li><a href="#about" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="About"><i class="fas fa-user mr-1"></i> About</a></li>
-        <li><a href="#skills" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Skills"><i class="fas fa-tools mr-1"></i> Skills</a></li>
-        <li><a href="#experience" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Experience"><i class="fas fa-suitcase mr-1"></i> Experience</a></li>
-        <li><a href="#education" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Education"><i class="fas fa-graduation-cap mr-1"></i> Education</a></li>
-        <li><a href="#contact" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Contact"><i class="fas fa-envelope mr-1"></i> Contact</a></li>
+        <li><a href="#home" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Home"><i class="fas fa-home mr-1 icon-transition"></i> Home</a></li>
+        <li><a href="#about" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="About"><i class="fas fa-user mr-1 icon-transition"></i> About</a></li>
+        <li><a href="#skills" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Skills"><i class="fas fa-tools mr-1 icon-transition"></i> Skills</a></li>
+        <li><a href="#experience" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Experience"><i class="fas fa-suitcase mr-1 icon-transition"></i> Experience</a></li>
+        <li><a href="#education" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Education"><i class="fas fa-graduation-cap mr-1 icon-transition"></i> Education</a></li>
+        <li><a href="#contact" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Contact"><i class="fas fa-envelope mr-1 icon-transition"></i> Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -200,7 +240,7 @@
   <section id="about" class="section-padding py-16 sm:py-20 bg-white dark:bg-gray-800" data-aos="fade-in">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 flex items-center justify-center" data-aos="slide-right">
-        <i class="fas fa-user-circle text-indigo-500 mr-2"></i> About Me
+        <i class="fas fa-user-circle text-indigo-500 mr-2 icon-transition"></i> About Me
       </h2>
       <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12">
         <div class="lg:w-1/2 flex flex-col items-center">
@@ -212,28 +252,41 @@
         <div class="lg:w-1/2 space-y-6">
           <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="slide-left" data-aos-delay="200">
             <div class="flex items-center mb-4">
-              <i class="fas fa-suitcase text-3xl text-blue-500 mr-3"></i>
+              <i class="fas fa-suitcase text-3xl text-blue-500 mr-3 icon-transition"></i>
               <h3 class="text-xl font-semibold">Experience</h3>
             </div>
             <p class="text-base">1+ year as a Business Development Executive, generating 150+ B2B leads and conducting 50+ ERP software demos for C-level executives.</p>
           </div>
           <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="slide-left" data-aos-delay="300">
             <div class="flex items-center mb-4">
-              <i class="fas fa-tools text-3xl text-green-500 mr-3"></i>
+              <i class="fas fa-tools text-3xl text-green-500 mr-3 icon-transition"></i>
               <h3 class="text-xl font-semibold">Skills</h3>
             </div>
             <p class="text-base">Proficient in Zoho and Odoo CRM, market analysis, cold calling, and strategic campaign collaboration for enhanced brand visibility.</p>
           </div>
           <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="slide-left" data-aos-delay="400">
             <div class="flex items-center mb-4">
-              <i class="fas fa-trophy text-3xl text-yellow-500 mr-3"></i>
+              <i class="fas fa-trophy text-3xl text-yellow-500 mr-3 icon-transition"></i>
               <h3 class="text-xl font-semibold">Achievements</h3>
             </div>
-            <p class="text-base">Increased client engagement by 40% through impactful presentations and refined sales strategies.</p>
+            <div class="grid grid-cols-2 gap-4 text-center">
+              <div>
+                <p class="text-3xl font-bold text-blue-600 counter" data-target="150">0</p>
+                <p class="text-sm">B2B Leads Generated</p>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-green-600 counter" data-target="50">0</p>
+                <p class="text-sm">ERP Demos Conducted</p>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-purple-600 counter" data-target="40">0</p>
+                <p class="text-sm">Client Engagement (%)</p>
+              </div>
+            </div>
           </div>
           <div class="text-center mt-6" data-aos="fade-up" data-aos-delay="500">
             <a href="https://raw.githubusercontent.com/mackwinjoy/mackwin.portfolio/bb81de3b60fb847d1b5c8ec724f9af0d606e630d/MackwinJoyResume.pdf" download class="gradient-btn px-6 py-3 rounded-full font-semibold inline-flex items-center focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Download Resume">
-              <i class="fas fa-download mr-2"></i> Download Resume
+              <i class="fas fa-download mr-2 icon-transition"></i> Download Resume
             </a>
           </div>
         </div>
@@ -252,67 +305,93 @@
   <section id="skills" class="section-padding py-16 sm:py-20 bg-gray-100 dark:bg-gray-700 bg-section" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 flex items-center justify-center" data-aos="slide-right">
-        <i class="fas fa-tools text-green-500 mr-2"></i> Skills
+        <i class="fas fa-tools text-green-500 mr-2 icon-transition"></i> Skills
       </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-semibold mb-4">Skill Proficiency</h3>
+          <div class="chart-container">
+            <canvas id="skillsPieChart"></canvas>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="150">
+            <p class="text-base font-semibold">Lead Generation</p>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="85"></div></div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+            <p class="text-base font-semibold">Sales Negotiation</p>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="80"></div></div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="250">
+            <p class="text-base font-semibold">CRM Tools (Zoho, Odoo)</p>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="90"></div></div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+            <p class="text-base font-semibold">Market Research</p>
+            <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="75"></div></div>
+          </div>
+        </div>
+      </div>
       <div class="grid skills-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
-          <i class="fas fa-search text-3xl text-green-500 mb-4"></i>
+          <i class="fas fa-search text-3xl text-green-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Lead Generation & Prospecting</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="150">
-          <i class="fas fa-handshake text-3xl text-blue-500 mb-4"></i>
+          <i class="fas fa-handshake text-3xl text-blue-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Sales Negotiation & Deal Closure</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
-          <i class="fas fa-briefcase text-3xl text-purple-500 mb-4"></i>
+          <i class="fas fa-briefcase text-3xl text-purple-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">B2B Sales & Strategic Partnerships</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="250">
-          <i class="fas fa-users text-3xl text-yellow-500 mb-4"></i>
+          <i class="fas fa-users text-3xl text-yellow-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Client Relationship Management</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
-          <i class="fas fa-chart-bar text-3xl text-red-500 mb-4"></i>
+          <i class="fas fa-chart-bar text-3xl text-red-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Market Research & Competitive Analysis</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="350">
-          <i class="fas fa-file-alt text-3xl text-teal-500 mb-4"></i>
+          <i class="fas fa-file-alt text-3xl text-teal-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Proposal Writing & Pitching</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="400">
-          <i class="fas fa-database text-3xl text-orange-500 mb-4"></i>
+          <i class="fas fa-database text-3xl text-orange-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">CRM Tools (Zoho, Odoo)</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="450">
-          <i class="fas fa-chart-line text-3xl text-indigo-500 mb-4"></i>
+          <i class="fas fa-chart-line text-3xl text-indigo-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Revenue Growth Strategy</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="500">
-          <i class="fas fa-envelope text-3xl text-green-500 mb-4"></i>
+          <i class="fas fa-envelope text-3xl text-green-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Cold Calling & Email Campaigns</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="550">
-          <i class="fas fa-table text-3xl text-blue-500 mb-4"></i>
+          <i class="fas fa-table text-3xl text-blue-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Data Analysis & Reporting (Excel, Google Sheets)</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="600">
-          <i class="fas fa-microphone text-3xl text-purple-500 mb-4"></i>
+          <i class="fas fa-microphone text-3xl text-purple-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Presentation & Communication Skills</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="650">
-          <i class="fas fa-user-check text-3xl text-yellow-500 mb-4"></i>
+          <i class="fas fa-user-check text-3xl text-yellow-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Customer-Centric Approach</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="700">
-          <i class="fas fa-sync-alt text-3xl text-red-500 mb-4"></i>
+          <i class="fas fa-sync-alt text-3xl text-red-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Adaptability & Resilience</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="750">
-          <i class="fas fa-users-cog text-3xl text-teal-500 mb-4"></i>
+          <i class="fas fa-users-cog text-3xl text-teal-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Team Collaboration</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="800">
-          <i class="fas fa-clock text-3xl text-orange-500 mb-4"></i>
+          <i class="fas fa-clock text-3xl text-orange-500 mb-4 icon-transition"></i>
           <h3 class="text-lg sm:text-xl font-semibold">Time Management & Multitasking</h3>
         </div>
       </div>
@@ -330,12 +409,12 @@
   <section id="experience" class="section-padding py-16 sm:py-20 bg-white dark:bg-gray-800 bg-section" style="background-image: url('https://images.unsplash.com/photo-1516321310768-90f0fdce4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 flex items-center justify-center" data-aos="slide-right">
-        <i class="fas fa-suitcase text-blue-500 mr-2"></i> Experience
+        <i class="fas fa-suitcase text-blue-500 mr-2 icon-transition"></i> Experience
       </h2>
       <div class="space-y-8">
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="100">
           <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
-            <i class="fas fa-building mr-2 text-indigo-500"></i> Invenger Technologies Inc.
+            <i class="fas fa-building mr-2 text-indigo-500 icon-transition"></i> Invenger Technologies Inc.
           </h3>
           <p class="text-gray-600 dark:text-gray-400">Jul 2024 – Present</p>
           <ul class="list-disc ml-6 mt-4 text-base sm:text-lg">
@@ -347,10 +426,13 @@
             <li>Conducted thorough market analysis and competitor research, identifying trends and refining value propositions to support sales strategies.</li>
             <li>Maintained CRM systems to track leads, manage client interactions, and generate actionable insights for sales forecasting and reporting.</li>
           </ul>
+          <div class="chart-container mt-6">
+            <canvas id="experienceBarChart"></canvas>
+          </div>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="200">
           <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
-            <i class="fas fa-building mr-2 text-indigo-500"></i> Acrene Solutions Private Limited
+            <i class="fas fa-building mr-2 text-indigo-500 icon-transition"></i> Acrene Solutions Private Limited
           </h3>
           <p class="text-gray-600 dark:text-gray-400">Previous Role</p>
           <ul class="list-disc ml-6 mt-4 text-base sm:text-lg">
@@ -374,19 +456,19 @@
   <section id="education" class="section-padding py-16 sm:py-20 bg-gray-100 dark:bg-gray-700 bg-section" style="background-image: url('https://images.unsplash.com/photo-1524178232363-64f36cf33d79?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
     <div class="container mx-auto px-4">
       <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 flex items-center justify-center" data-aos="slide-right">
-        <i class="fas fa-graduation-cap text-purple-500 mr-2"></i> Education & Certifications
+        <i class="fas fa-graduation-cap text-purple-500 mr-2 icon-transition"></i> Education & Certifications
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="100">
           <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
-            <i class="fas fa-university mr-2 text-blue-500"></i> Education
+            <i class="fas fa-university mr-2 text-blue-500 icon-transition"></i> Education
           </h3>
           <p class="mt-2 text-base sm:text-lg"><strong>MBA (Finance & Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
           <p class="mt-2 text-base sm:text-lg"><strong>Bachelor of Commerce</strong> - MGM College, Udupi (2019–2022) | 74.4%</p>
         </div>
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="200">
           <h3 class="text-xl sm:text-2xl font-semibold flex items-center">
-            <i class="fas fa-certificate mr-2 text-green-500"></i> Certifications
+            <i class="fas fa-certificate mr-2 text-green-500 icon-transition"></i> Certifications
           </h3>
           <ul class="list-disc ml-6 mt-4 text-base sm:text-lg">
             <li>Power BI</li>
@@ -410,31 +492,31 @@
   <section id="contact" class="section-padding py-16 sm:py-20 text-white contact-section" style="background: linear-gradient(45deg, #4b5bd4, #6a1b9a, #4b5bd4); background-size: 200% 200%; animation: backgroundWave 15s ease infinite;" data-aos="fade-in">
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-3xl sm:text-4xl font-bold mb-10 flex items-center justify-center" data-aos="slide-right">
-        <i class="fas fa-envelope-open-text text-yellow-400 mr-2"></i> Contact Me
+        <i class="fas fa-envelope-open-text text-yellow-400 mr-2 icon-transition"></i> Contact Me
       </h2>
       <div class="flex flex-col items-center space-y-4" data-aos="fade-up" data-aos-delay="100">
         <p class="flex items-center">
-          <i class="fas fa-envelope mr-2 text-green-400"></i>
+          <i class="fas fa-envelope mr-2 text-green-400 icon-transition"></i>
           <a href="mailto:dsouzamackwinjoy@gmail.com" class="hover:text-yellow-300 hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Email Mackwin Joy Dsouza">dsouzamackwinjoy@gmail.com</a>
         </p>
         <p class="flex items-center">
-          <i class="fas fa-phone mr-2 text-blue-400"></i> 9901179203
+          <i class="fas fa-phone mr-2 text-blue-400 icon-transition"></i> 9901179203
         </p>
         <p class="flex items-center">
-          <i class="fas fa-passport mr-2 text-purple-400 hover:rotate-[15deg] transition-transform duration-300"></i>
+          <i class="fas fa-passport mr-2 text-purple-400 icon-transition"></i>
           <span class="hover:text-yellow-300 hover:underline transition-all duration-300">Y4773735</span>
         </p>
         <p class="flex items-center">
-          <i class="fas fa-map-marker-alt mr-2 text-red-400"></i> Sunview Posarma House, Pilar Village, Mudarangadi
+          <i class="fas fa-map-marker-alt mr-2 text-red-400 icon-transition"></i> Sunview Posarma House, Pilar Village, Mudarangadi
         </p>
         <p class="flex items-center">
-          <i class="fab fa-linkedin mr-2 text-indigo-400"></i>
+          <i class="fab fa-linkedin mr-2 text-indigo-400 icon-transition"></i>
           <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank" class="underline hover:text-yellow-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="LinkedIn Profile">mackwin-joy-dsouza</a>
         </p>
       </div>
       <div class="mt-8" data-aos="fade-up" data-aos-delay="200">
         <h3 class="text-xl sm:text-2xl font-semibold mb-4 flex items-center justify-center">
-          <i class="fas fa-language mr-2 text-orange-400"></i> Languages
+          <i class="fas fa-language mr-2 text-orange-400 icon-transition"></i> Languages
         </h3>
         <p class="text-base sm:text-lg">English, Hindi, Kannada</p>
       </div>
@@ -445,7 +527,7 @@
   <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6" data-aos="fade-up">
     <div class="container mx-auto px-4 text-center">
       <p class="flex items-center justify-center">
-        <i class="fas fa-copyright mr-2"></i> © 2025 Mackwin Joy Dsouza. All rights reserved.
+        <i class="fas fa-copyright mr-2 icon-transition"></i> © 2025 Mackwin Joy Dsouza. All rights reserved.
       </p>
     </div>
   </footer>
@@ -482,6 +564,97 @@
           hamburger.classList.remove('active');
         }
       });
+    });
+
+    // Animated Counters
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const updateCounter = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / 200;
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCounter, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          updateCounter();
+          observer.disconnect();
+        }
+      }, { threshold: 0.5 });
+      observer.observe(counter);
+    });
+
+    // Progress Bar Animation
+    const progressBars = document.querySelectorAll('.progress-fill');
+    progressBars.forEach(bar => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          const width = bar.getAttribute('data-width');
+          bar.style.width = `${width}%`;
+          observer.disconnect();
+        }
+      }, { threshold: 0.5 });
+      observer.observe(bar);
+    });
+
+    // Skills Pie Chart
+    const skillsPieChart = new Chart(document.getElementById('skillsPieChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Lead Generation', 'Sales Negotiation', 'CRM Tools', 'Market Research'],
+        datasets: [{
+          data: [85, 80, 90, 75],
+          backgroundColor: ['#4b5bd4', '#6a1b9a', '#f59e0b', '#ef4444'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom',
+            labels: { color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937' }
+          }
+        }
+      }
+    });
+
+    // Experience Bar Chart
+    const experienceBarChart = new Chart(document.getElementById('experienceBarChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Leads Increase', 'Engagement Increase'],
+        datasets: [{
+          label: 'Achievements (%)',
+          data: [30, 40],
+          backgroundColor: ['#4b5bd4', '#f59e0b'],
+          borderColor: ['#4b5bd4', '#f59e0b'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 50,
+            ticks: { color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937' }
+          },
+          x: {
+            ticks: { color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937' }
+          }
+        },
+        plugins: {
+          legend: {
+            labels: { color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937' }
+          }
+        }
+      }
     });
   </script>
 </body>
