@@ -182,17 +182,61 @@
       width: 100%;
       height: auto;
       padding: 1rem;
+      margin: 0 auto;
       overflow: hidden;
+      box-sizing: border-box;
     }
     canvas {
       max-width: 100%;
       height: auto !important;
+      width: 100% !important;
+    }
+
+    /* Separate Chart Section */
+    .chart-section {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .dark .chart-section {
+      background: #1f2937;
     }
 
     /* Lottie Animation Container */
     .lottie-animation {
       max-width: 200px;
       margin: 0 auto;
+    }
+
+    /* Hero Section with GIF Background */
+    .hero-section {
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg-gif {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.3; /* Subtle fade for text readability */
+      z-index: -1;
+      filter: blur(2px); /* Slight blur for clarity and subtlety */
+    }
+    .hero-content {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      text-align: center;
+      z-index: 1;
     }
 
     /* Mobile-Specific Adjustments */
@@ -242,9 +286,17 @@
       }
       .chart-container {
         padding: 0.5rem;
+        margin: 0;
+      }
+      .chart-section {
+        padding: 0.5rem;
+        margin-top: 1rem;
       }
       .lottie-animation {
         max-width: 150px;
+      }
+      .hero-content {
+        padding: 1rem;
       }
       h2 {
         font-size: 1.875rem;
@@ -255,11 +307,14 @@
       p, li {
         font-size: 0.875rem;
       }
+      .hero-bg-gif {
+        filter: blur(1px); /* Reduced blur for smaller screens */
+      }
     }
 
     /* Smooth Performance on Mobile */
     @media (prefers-reduced-motion: reduce) {
-      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section, .icon-transition, .progress-fill {
+      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section, .icon-transition, .progress-fill, .hero-bg-gif {
         transition: none !important;
         animation: none !important;
         transform: none !important;
@@ -270,6 +325,24 @@
     .profile-img {
       object-fit: cover;
       object-position: center;
+    }
+
+    /* Responsive Chart Adjustments */
+    @media (max-width: 768px) {
+      .chart-container {
+        padding: 0.5rem;
+      }
+      canvas {
+        max-height: 300px;
+      }
+    }
+    @media (max-width: 480px) {
+      .chart-container {
+        padding: 0.25rem;
+      }
+      canvas {
+        max-height: 250px;
+      }
     }
   </style>
 </head>
@@ -296,9 +369,10 @@
     </div>
   </nav>
 
-  <!-- Hero Section with Lottie and Typed.js -->
-  <section id="home" class="min-h-[80vh] flex items-center justify-center bg-section hero-section" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
-    <div class="text-center text-white bg-black bg-opacity-70 p-6 rounded-lg">
+  <!-- Hero Section with GIF Background -->
+  <section id="home" class="hero-section">
+    <img src="https://raw.githubusercontent.com/mackwinjoy/mackwinjoy-portfolio/3602339038a884bbc0e2f0d126e722ad6885f4a6/Animation%20Tech%20GIF%20by%20Butlerm.gif" alt="Tech circuit background" class="hero-bg-gif" loading="lazy">
+    <div class="hero-content text-white">
       <div class="lottie-animation" id="hero-lottie"></div>
       <h1 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100">Mackwin Joy Dsouza</h1>
       <p class="text-lg sm:text-xl mb-6 typed-text" id="typed-text" data-aos="fade-up" data-aos-delay="200"></p>
@@ -471,7 +545,7 @@
           <h3 class="text-sm font-semibold">Customer-Centric Approach</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="700">
-          <i class="fas fa-sync-alt text-2xl text-red-500DRAMatic mb-3 icon-transition"></i>
+          <i class="fas fa-sync-alt text-2xl text-red-500 mb-3 icon-transition"></i>
           <h3 class="text-sm font-semibold">Adaptability & Resilience</h3>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="750">
@@ -514,7 +588,9 @@
             <li>Conducted market analysis and competitor research, refining value propositions to support sales strategies.</li>
             <li>Maintained CRM systems to track leads, manage interactions, and generate insights for sales forecasting.</li>
           </ul>
-          <div class="chart-container mt-4" data-aos="fade-up" data-aos-delay="300">
+        </div>
+        <div class="chart-section" data-aos="fade-up" data-aos-delay="300">
+          <div class="chart-container">
             <canvas id="experienceBarChart"></canvas>
           </div>
         </div>
@@ -551,7 +627,7 @@
           <h3 class="text-lg font-semibold flex items-center">
             <i class="fas fa-university mr-2 text-blue-500 icon-transition"></i> Education
           </h3>
-          <p class="mt-2 text-sm"><strong>MBA (Finance & Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
+          <p class="mt-2 text-sm"><strong>MBA (Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
           <p class="mt-2 text-sm"><strong>Bachelor of Commerce</strong> - MGM College, Udupi (2019–2022) | 74.4%</p>
         </div>
         <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="300">
@@ -735,19 +811,30 @@
       },
       options: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             position: 'bottom',
             labels: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
-              font: { size: 12 }
+              font: {
+                size: window.innerWidth < 480 ? 10 : 12
+              },
+              padding: window.innerWidth < 480 ? 10 : 20
             }
           }
         },
         animation: {
           animateScale: true,
           animateRotate: true
+        },
+        layout: {
+          padding: {
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10
+          }
         }
       }
     });
@@ -767,20 +854,24 @@
       },
       options: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: true,
             max: 50,
             ticks: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
-              font: { size: 10 }
+              font: {
+                size: window.innerWidth < 480 ? 8 : 10
+              }
             }
           },
           x: {
             ticks: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
-              font: { size: 10 }
+              font: {
+                size: window.innerWidth < 480 ? 8 : 10
+              }
             }
           }
         },
@@ -788,13 +879,23 @@
           legend: {
             labels: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
-              font: { size: 12 }
+              font: {
+                size: window.innerWidth < 480 ? 10 : 12
+              }
             }
           }
         },
         animation: {
           duration: 1000,
           easing: 'easeOutBounce'
+        },
+        layout: {
+          padding: {
+            top: 10,
+            bottom: 10,
+            left: 10,
+            right: 10
+          }
         }
       }
     });
