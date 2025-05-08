@@ -210,7 +210,7 @@
       margin: 0 auto;
     }
 
-    /* Hero Section with GIF Background */
+    /* Hero Section with Video Background */
     .hero-section {
       position: relative;
       min-height: 80vh;
@@ -219,17 +219,25 @@
       justify-content: center;
       overflow: hidden;
     }
-    .hero-bg-gif {
+    .hero-bg-media {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      z-index: -1;
+    }
+    .hero-bg-media video,
+    .hero-bg-media img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center;
-      opacity: 0.3; /* Subtle fade for text readability */
-      z-index: -1;
-      filter: blur(2px); /* Slight blur for clarity and subtlety */
+      opacity: 0.5; /* Increased from 0.3 for better visibility */
+      display: block;
+    }
+    .hero-bg-media video {
+      background: #000; /* Fallback background color for video */
     }
     .hero-content {
       background: rgba(0, 0, 0, 0.7);
@@ -237,6 +245,13 @@
       border-radius: 0.75rem;
       text-align: center;
       z-index: 1;
+    }
+    /* Ensure high-resolution displays (Retina) */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .hero-bg-media img {
+        image-rendering: -webkit-optimize-contrast; /* Improve sharpness */
+        image-rendering: crisp-edges;
+      }
     }
 
     /* Mobile-Specific Adjustments */
@@ -307,14 +322,15 @@
       p, li {
         font-size: 0.875rem;
       }
-      .hero-bg-gif {
-        filter: blur(1px); /* Reduced blur for smaller screens */
+      .hero-bg-media video,
+      .hero-bg-media img {
+        opacity: 0.6; /* Slightly higher for small screens */
       }
     }
 
     /* Smooth Performance on Mobile */
     @media (prefers-reduced-motion: reduce) {
-      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section, .icon-transition, .progress-fill, .hero-bg-gif {
+      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section, .icon-transition, .progress-fill, .hero-bg-media video, .hero-bg-media img {
         transition: none !important;
         animation: none !important;
         transform: none !important;
@@ -369,9 +385,14 @@
     </div>
   </nav>
 
-  <!-- Hero Section with GIF Background -->
+  <!-- Hero Section with Video Background -->
   <section id="home" class="hero-section">
-    <img src="https://raw.githubusercontent.com/mackwinjoy/mackwinjoy-portfolio/3602339038a884bbc0e2f0d126e722ad6885f4a6/Animation%20Tech%20GIF%20by%20Butlerm.gif" alt="Tech circuit background" class="hero-bg-gif" loading="lazy">
+    <div class="hero-bg-media">
+      <video autoplay muted loop playsinline class="hero-bg-video" poster="https://github.com/mackwinjoy/mackwinjoy-portfolio/raw/main/animation_converted.gif">
+        <source src="https://github.com/mackwinjoy/mackwinjoy-portfolio/raw/6bf933b4b0ef11a7cecd21aa1925456e7ee8cbf1/animation_converted.webm" type="video/webm">
+        <img src="https://github.com/mackwinjoy/mackwinjoy-portfolio/raw/main/animation_converted.gif" alt="Tech animation background" class="hero-bg-gif" loading="lazy">
+      </video>
+    </div>
     <div class="hero-content text-white">
       <div class="lottie-animation" id="hero-lottie"></div>
       <h1 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100">Mackwin Joy Dsouza</h1>
@@ -901,4 +922,4 @@
     });
   </script>
 </body>
-</html>
+</html> 
