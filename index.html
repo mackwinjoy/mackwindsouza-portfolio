@@ -210,7 +210,7 @@
       margin: 0 auto;
     }
 
-    /* Hero Section with Video Background */
+    /* Hero Section with Media Background */
     .hero-section {
       position: relative;
       min-height: 80vh;
@@ -218,26 +218,26 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      width: 100%;
+      margin: 0;
+      padding: 0;
     }
     .hero-bg-media {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 100vw;
       height: 100%;
       z-index: -1;
+      margin: 0;
     }
-    .hero-bg-media video,
     .hero-bg-media img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
-      opacity: 0.5; /* Increased from 0.3 for better visibility */
       display: block;
-    }
-    .hero-bg-media video {
-      background: #000; /* Fallback background color for video */
+      opacity: 0.5;
     }
     .hero-content {
       background: rgba(0, 0, 0, 0.7);
@@ -249,7 +249,7 @@
     /* Ensure high-resolution displays (Retina) */
     @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
       .hero-bg-media img {
-        image-rendering: -webkit-optimize-contrast; /* Improve sharpness */
+        image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
       }
     }
@@ -262,7 +262,7 @@
         min-height: auto;
       }
       .hero-section {
-        padding: 2rem 1rem;
+        padding: 2rem 0;
         min-height: 80vh;
       }
       .hero-section h1 {
@@ -322,15 +322,14 @@
       p, li {
         font-size: 0.875rem;
       }
-      .hero-bg-media video,
       .hero-bg-media img {
-        opacity: 0.6; /* Slightly higher for small screens */
+        opacity: 0.6;
       }
     }
 
     /* Smooth Performance on Mobile */
     @media (prefers-reduced-motion: reduce) {
-      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section, .icon-transition, .progress-fill, .hero-bg-media video, .hero-bg-media img {
+      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section, .icon-transition, .progress-fill, .hero-bg-media img {
         transition: none !important;
         animation: none !important;
         transform: none !important;
@@ -360,6 +359,12 @@
         max-height: 250px;
       }
     }
+
+    /* Ensure no default body margins */
+    body {
+      margin: 0;
+      padding: 0;
+    }
   </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
@@ -385,20 +390,19 @@
     </div>
   </nav>
 
-  <!-- Hero Section with Video Background -->
-  <section id="home" class="hero-section">
+  <!-- Hero Section with Static Image Background -->
+  <section id="home" class="hero-section w-full">
     <div class="hero-bg-media">
-      <video autoplay muted loop playsinline class="hero-bg-video" poster="https://github.com/mackwinjoy/mackwinjoy-portfolio/raw/main/animation_converted.gif">
-        <source src="https://github.com/mackwinjoy/mackwinjoy-portfolio/raw/6bf933b4b0ef11a7cecd21aa1925456e7ee8cbf1/animation_converted.webm" type="video/webm">
-        <img src="https://github.com/mackwinjoy/mackwinjoy-portfolio/raw/main/animation_converted.gif" alt="Tech animation background" class="hero-bg-gif" loading="lazy">
-      </video>
+      <img src="https://github.com/mackwinjoy/mackwindsouza-portfolio/raw/e0ad7d032aea148e364f0e2dda947871cd8e9d5a/profile.jpg" alt="Profile background" class="hero-bg-img" loading="lazy">
     </div>
-    <div class="hero-content text-white">
-      <div class="lottie-animation" id="hero-lottie"></div>
-      <h1 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100">Mackwin Joy Dsouza</h1>
-      <p class="text-lg sm:text-xl mb-6 typed-text" id="typed-text" data-aos="fade-up" data-aos-delay="200"></p>
-      <a href="#contact" class="gradient-btn px-6 py-3 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Contact Me" data-aos="fade-up" data-aos-delay="300">Get in Touch</a>
-      <p class="text-sm italic mt-4" data-aos="fade-up" data-aos-delay="400">Scroll down to explore my journey ↓</p>
+    <div class="container mx-auto px-0">
+      <div class="hero-content text-white">
+        <div class="lottie-animation" id="hero-lottie"></div>
+        <h1 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100">Mackwin Joy Dsouza</h1>
+        <p class="text-lg sm:text-xl mb-6 typed-text" id="typed-text" data-aos="fade-up" data-aos-delay="200"></p>
+        <a href="#contact" class="gradient-btn px-6 py-3 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Contact Me" data-aos="fade-up" data-aos-delay="300">Get in Touch</a>
+        <p class="text-sm italic mt-4" data-aos="fade-up" data-aos-delay="400">Scroll down to explore my journey ↓</p>
+      </div>
     </div>
   </section>
 
@@ -674,8 +678,8 @@
   </div>
 
   <!-- Contact Section with Lottie -->
-  <section id="contact" class="section-padding py-12 text-white contact-section" style="background: linear-gradient(45deg, #4b5bd4, #6a1b9a, #4b5bd4); background-size: 200% 200%; animation: backgroundWave 15s ease infinite;" data-aos="fade-in">
-    <div class="container mx-auto px-4 text-center">
+  <section id="contact" class="section-padding py-12 text-white contact-section w-full" style="background: linear-gradient(45deg, #4b5bd4, #6a1b9a, #4b5bd4); background-size: 200% 200%; animation: backgroundWave 15s ease infinite;" data-aos="fade-in">
+    <div class="container mx-auto px-0 text-center">
       <h2 class="text-2xl sm:text-3xl font-bold mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
         <i class="fas fa-envelope-open-text text-yellow-400 mr-2 icon-transition"></i> Contact Me
       </h2>
@@ -709,8 +713,8 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6" data-aos="fade-up" data-aos-delay="100">
+  <!-- Footer (Animation Removed) -->
+  <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
     <div class="container mx-auto px-4 text-center">
       <p class="flex items-center justify-center text-sm">
         <i class="fas fa-copyright mr-2 icon-transition"></i> © 2025 Mackwin Joy Dsouza. All rights reserved.
@@ -922,4 +926,4 @@
     });
   </script>
 </body>
-</html> 
+</html>
