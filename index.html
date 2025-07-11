@@ -11,6 +11,26 @@
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
   <style>
+    /* Global overflow fix */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* Container width constraints */
+    .container {
+      max-width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     /* Enhanced Button Hover Effects */
     .gradient-btn {
       background: #f59e0b;
@@ -19,6 +39,8 @@
       overflow: hidden;
       transition: all 0.3s ease;
       z-index: 1;
+      max-width: 100%;
+      word-wrap: break-word;
     }
     .gradient-btn::before {
       content: '';
@@ -47,6 +69,8 @@
     /* Image Scale on Hover */
     .img-scale-hover {
       transition: transform 0.3s ease;
+      max-width: 100%;
+      height: auto;
     }
     .img-scale-hover:hover {
       transform: scale(1.1);
@@ -57,6 +81,8 @@
       transition: all 0.3s ease;
       background: #ffffff;
       position: relative;
+      max-width: 100%;
+      word-wrap: break-word;
     }
     .card-hover:hover {
       transform: translateY(-8px);
@@ -86,11 +112,14 @@
       border-radius: 4px;
       overflow: hidden;
       position: relative;
+      width: 100%;
+      max-width: 100%;
     }
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, #4b5bd4, #6a1b9a);
       transition: width 1.5s ease-in-out;
+      max-width: 100%;
     }
 
     /* Hamburger Menu Animation */
@@ -115,6 +144,8 @@
       max-width: 250px;
       transition: all 0.3s ease;
       transform: scale(0.95);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
     .speech-bubble:hover {
       background: #e5e7eb;
@@ -160,6 +191,9 @@
       background-repeat: no-repeat;
       position: relative;
       background-attachment: scroll;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
     }
     .bg-section::before {
       content: '';
@@ -181,13 +215,13 @@
       max-width: 100%;
       width: 100%;
       height: auto;
-      padding: 1rem;
+      padding: 0.5rem;
       margin: 0 auto;
       overflow: hidden;
       box-sizing: border-box;
     }
     canvas {
-      max-width: 100%;
+      max-width: 100% !important;
       height: auto !important;
       width: 100% !important;
     }
@@ -199,6 +233,8 @@
       background: #ffffff;
       border-radius: 0.75rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 100%;
+      overflow: hidden;
     }
     .dark .chart-section {
       background: #1f2937;
@@ -208,128 +244,168 @@
     .lottie-animation {
       max-width: 200px;
       margin: 0 auto;
+      width: 100%;
     }
 
-    /* Hero Section with Media Background */
-    .hero-section {
-      position: relative;
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+    /* SVG Wave fixes */
+    .wave-svg {
       width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    .hero-bg-media {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100%;
-      z-index: -1;
-      margin: 0;
-    }
-    .hero-bg-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+      max-width: 100%;
+      height: auto;
       display: block;
-      opacity: 0.5;
+      overflow: hidden;
     }
-    .hero-content {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 1.5rem;
-      border-radius: 0.75rem;
-      text-align: center;
-      z-index: 1;
+
+    /* Text wrapping and overflow fixes */
+    .text-wrap {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
     }
-    /* Ensure high-resolution displays (Retina) */
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      .hero-bg-media img {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-      }
+
+    /* Grid responsive fixes */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 100%;
     }
 
     /* Mobile-Specific Adjustments */
     @media (max-width: 640px) {
-      .bg-section {
-        background-size: contain;
-        background-position: top;
-        min-height: auto;
+      .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
       }
+      
+      .bg-section {
+        background-size: cover;
+        background-position: center;
+        min-height: auto;
+        padding: 1rem 0;
+      }
+      
       .hero-section {
-        padding: 2rem 0;
+        padding: 2rem 0.75rem;
         min-height: 80vh;
       }
+      
       .hero-section h1 {
-        font-size: 2.25rem;
+        font-size: 2rem;
         line-height: 1.2;
       }
+      
       .hero-section p, .typed-text {
-        font-size: 1.125rem;
+        font-size: 1rem;
       }
+      
       .section-padding {
-        padding: 3rem 1rem;
+        padding: 2rem 0.75rem;
       }
+      
       .skills-grid {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
       }
+      
       .nav-menu {
         width: 100%;
         position: absolute;
         top: 100%;
         left: 0;
         background: #1f2937;
+        max-width: 100%;
       }
+      
       .speech-bubble {
-        max-width: 200px;
+        max-width: calc(100vw - 4rem);
         padding: 0.75rem;
         font-size: 0.875rem;
       }
+      
       .speech-bubble::after {
         left: 20px;
       }
+      
       .card-hover {
-        padding: 1rem;
+        padding: 0.75rem;
+        margin: 0.5rem 0;
       }
+      
       .progress-bar {
         margin-top: 0.5rem;
       }
+      
       .chart-container {
-        padding: 0.5rem;
+        padding: 0.25rem;
         margin: 0;
       }
+      
       .chart-section {
         padding: 0.5rem;
         margin-top: 1rem;
       }
+      
       .lottie-animation {
         max-width: 150px;
       }
-      .hero-content {
-        padding: 1rem;
-      }
+      
       h2 {
-        font-size: 1.875rem;
+        font-size: 1.75rem;
       }
+      
       h3 {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
       }
+      
       p, li {
         font-size: 0.875rem;
       }
-      .hero-bg-media img {
-        opacity: 0.6;
+
+      /* Ensure no horizontal overflow on mobile */
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .flex {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 480px) {
+      .container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      
+      .hero-section {
+        padding: 1.5rem 0.5rem;
+      }
+      
+      .section-padding {
+        padding: 1.5rem 0.5rem;
+      }
+      
+      .chart-container {
+        padding: 0.25rem;
+      }
+      
+      canvas {
+        max-height: 200px !important;
+      }
+      
+      .speech-bubble {
+        max-width: calc(100vw - 2rem);
+        font-size: 0.8rem;
+        padding: 0.5rem;
       }
     }
 
     /* Smooth Performance on Mobile */
     @media (prefers-reduced-motion: reduce) {
-      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section, .icon-transition, .progress-fill, .hero-bg-media img {
+      .gradient-btn, .img-scale-hover, .card-hover, .speech-bubble, .contact-section, .icon-transition, .progress-fill {
         transition: none !important;
         animation: none !important;
         transform: none !important;
@@ -340,6 +416,8 @@
     .profile-img {
       object-fit: cover;
       object-position: center;
+      max-width: 100%;
+      height: auto;
     }
 
     /* Responsive Chart Adjustments */
@@ -348,121 +426,112 @@
         padding: 0.5rem;
       }
       canvas {
-        max-height: 300px;
+        max-height: 250px !important;
       }
     }
+    
     @media (max-width: 480px) {
       .chart-container {
         padding: 0.25rem;
       }
       canvas {
-        max-height: 250px;
+        max-height: 200px !important;
       }
-    }
-
-    /* Ensure no default body margins */
-    body {
-      margin: 0;
-      padding: 0;
     }
   </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300 overflow-x-hidden">
   <!-- Navbar with Hamburger Menu -->
   <nav class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white fixed w-full z-10 shadow-lg">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold flex items-center" data-aos="fade-down">
-        <i class="fas fa-briefcase mr-2 icon-transition"></i> Mackwin Joy Dsouza
+    <div class="container mx-auto px-2 sm:px-4 py-4 flex justify-between items-center max-w-full">
+      <h1 class="text-lg sm:text-xl font-bold flex items-center text-wrap" data-aos="fade-down">
+        <i class="fas fa-briefcase mr-2 icon-transition"></i> 
+        <span class="truncate">Mackwin Joy Dsouza</span>
       </h1>
       <div class="hamburger md:hidden flex flex-col cursor-pointer" onclick="toggleMenu()">
-        <span class="bar block w-8 h-1 bg-white mb-2 transition-all duration-300"></span>
-        <span class="bar block w-8 h-1 bg-white mb-2 transition-all duration-300"></span>
-        <span class="bar block w-8 h-1 bg-white transition-all duration-300"></span>
+        <span class="bar block w-6 h-0.5 bg-white mb-1 transition-all duration-300"></span>
+        <span class="bar block w-6 h-0.5 bg-white mb-1 transition-all duration-300"></span>
+        <span class="bar block w-6 h-0.5 bg-white transition-all duration-300"></span>
       </div>
-      <ul id="nav-menu" class="nav-menu hidden md:flex md:flex-row md:space-x-6 md:items-center md:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 flex-col items-center space-y-4 md:space-y-0 py-4 md:py-0" data-aos="fade-down" data-aos-delay="100">
-        <li><a href="#home" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Home"><i class="fas fa-home mr-1 icon-transition"></i> Home</a></li>
-        <li><a href="#about" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="About"><i class="fas fa-user mr-1 icon-transition"></i> About</a></li>
-        <li><a href="#skills" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Skills"><i class="fas fa-tools mr-1 icon-transition"></i> Skills</a></li>
-        <li><a href="#experience" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Experience"><i class="fas fa-suitcase mr-1 icon-transition"></i> Experience</a></li>
-        <li><a href="#education" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Education"><i class="fas fa-graduation-cap mr-1 icon-transition"></i> Education</a></li>
-        <li><a href="#contact" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded" aria-label="Contact"><i class="fas fa-envelope mr-1 icon-transition"></i> Contact</a></li>
+      <ul id="nav-menu" class="nav-menu hidden md:flex md:flex-row md:space-x-4 lg:space-x-6 md:items-center md:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 flex-col items-center space-y-4 md:space-y-0 py-4 md:py-0 max-w-full" data-aos="fade-down" data-aos-delay="100">
+        <li><a href="#home" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded text-sm lg:text-base" aria-label="Home"><i class="fas fa-home mr-1 icon-transition"></i> Home</a></li>
+        <li><a href="#about" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded text-sm lg:text-base" aria-label="About"><i class="fas fa-user mr-1 icon-transition"></i> About</a></li>
+        <li><a href="#skills" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded text-sm lg:text-base" aria-label="Skills"><i class="fas fa-tools mr-1 icon-transition"></i> Skills</a></li>
+        <li><a href="#experience" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded text-sm lg:text-base" aria-label="Experience"><i class="fas fa-suitcase mr-1 icon-transition"></i> Experience</a></li>
+        <li><a href="#education" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded text-sm lg:text-base" aria-label="Education"><i class="fas fa-graduation-cap mr-1 icon-transition"></i> Education</a></li>
+        <li><a href="#contact" class="hover:text-yellow-300 transition focus:outline-none focus:ring-2 focus:ring-yellow-300 rounded text-sm lg:text-base" aria-label="Contact"><i class="fas fa-envelope mr-1 icon-transition"></i> Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero Section with Static Image Background -->
-  <section id="home" class="hero-section w-full">
-    <div class="hero-bg-media">
-      <img src="https://github.com/mackwinjoy/mackwindsouza-portfolio/raw/e0ad7d032aea148e364f0e2dda947871cd8e9d5a/profile.jpg" alt="Profile background" class="hero-bg-img" loading="lazy">
-    </div>
-    <div class="container mx-auto px-0">
-      <div class="hero-content text-white">
-        <div class="lottie-animation" id="hero-lottie"></div>
-        <h1 class="text-3xl sm:text-4xl font-bold mb-4" data-aos="fade-up" data-aos-delay="100">Mackwin Joy Dsouza</h1>
-        <p class="text-lg sm:text-xl mb-6 typed-text" id="typed-text" data-aos="fade-up" data-aos-delay="200"></p>
-        <a href="#contact" class="gradient-btn px-6 py-3 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Contact Me" data-aos="fade-up" data-aos-delay="300">Get in Touch</a>
-        <p class="text-sm italic mt-4" data-aos="fade-up" data-aos-delay="400">Scroll down to explore my journey ↓</p>
-      </div>
+  <!-- Hero Section with Lottie and Typed.js -->
+  <section id="home" class="min-h-screen flex items-center justify-center bg-section hero-section w-full overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
+    <div class="text-center text-white bg-black bg-opacity-70 p-4 sm:p-6 rounded-lg mx-2 sm:mx-4 max-w-full">
+      <div class="lottie-animation mb-4" id="hero-lottie"></div>
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 text-wrap" data-aos="fade-up" data-aos-delay="100">Mackwin Joy Dsouza</h1>
+      <p class="text-base sm:text-lg lg:text-xl mb-6 typed-text text-wrap" id="typed-text" data-aos="fade-up" data-aos-delay="200"></p>
+      <a href="#contact" class="gradient-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300 inline-block text-sm sm:text-base" aria-label="Contact Me" data-aos="fade-up" data-aos-delay="300">Get in Touch</a>
+      <p class="text-xs sm:text-sm italic mt-4 text-wrap" data-aos="fade-up" data-aos-delay="400">Scroll down to explore my journey ↓</p>
     </div>
   </section>
 
   <!-- Wave Separator -->
   <div class="w-full overflow-hidden leading-none">
-    <svg class="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <svg class="wave-svg h-12 sm:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
       <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#ffffff" class="dark:fill-gray-800"></path>
     </svg>
   </div>
 
   <!-- About Section -->
-  <section id="about" class="section-padding py-12 bg-white dark:bg-gray-800" data-aos="fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
+  <section id="about" class="section-padding py-8 sm:py-12 bg-white dark:bg-gray-800 w-full overflow-hidden" data-aos="fade-in">
+    <div class="container mx-auto px-2 sm:px-4 max-w-full">
+      <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-6 sm:mb-8 flex items-center justify-center text-wrap" data-aos="zoom-in" data-aos-delay="100">
         <i class="fas fa-user-circle text-indigo-500 mr-2 icon-transition"></i> About Me
       </h2>
-      <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8">
-        <div class="lg:w-1/2 flex flex-col items-center">
-          <img src="https://i.ibb.co/fV97dvzn/Image-1.jpg" alt="Profile of Mackwin Joy Dsouza" class="rounded-full w-48 h-48 profile-img border-4 border-white shadow-lg img-scale-hover" loading="lazy" data-aos="zoom-in" data-aos-delay="200">
-          <div class="speech-bubble text-center" data-aos="fade-up" data-aos-delay="300">
-            <p class="text-sm italic">"Driving business growth through strategic partnerships and client-focused solutions."</p>
+      <div class="flex flex-col lg:flex-row items-center lg:items-start gap-6 sm:gap-8 max-w-full">
+        <div class="w-full lg:w-1/2 flex flex-col items-center">
+          <img src="https://i.ibb.co/fV97dvzn/Image-1.jpg" alt="Profile of Mackwin Joy Dsouza" class="rounded-full w-32 h-32 sm:w-48 sm:h-48 profile-img border-4 border-white shadow-lg img-scale-hover" loading="lazy" data-aos="zoom-in" data-aos-delay="200">
+          <div class="speech-bubble text-center mt-4" data-aos="fade-up" data-aos-delay="300">
+            <p class="text-xs sm:text-sm italic text-wrap">"Driving business growth through strategic partnerships and client-focused solutions."</p>
           </div>
         </div>
-        <div class="lg:w-1/2 space-y-6">
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="slide-up" data-aos-delay="400">
+        <div class="w-full lg:w-1/2 space-y-4 sm:space-y-6">
+          <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="slide-up" data-aos-delay="400">
             <div class="flex items-center mb-3">
-              <i class="fas fa-suitcase text-2xl text-blue-500 mr-3 icon-transition"></i>
-              <h3 class="text-lg font-semibold">Experience</h3>
+              <i class="fas fa-suitcase text-xl sm:text-2xl text-blue-500 mr-3 icon-transition"></i>
+              <h3 class="text-base sm:text-lg font-semibold">Experience</h3>
             </div>
-            <p class="text-sm">1+ year as a Business Development Executive, generating 150+ B2B leads and conducting 50+ ERP software demos for C-level executives.</p>
+            <p class="text-xs sm:text-sm text-wrap">1+ year as a Business Development Executive, generating 150+ B2B leads and conducting 50+ ERP software demos for C-level executives.</p>
           </div>
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="slide-up" data-aos-delay="500">
+          <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="slide-up" data-aos-delay="500">
             <div class="flex items-center mb-3">
-              <i class="fas fa-tools text-2xl text-green-500 mr-3 icon-transition"></i>
-              <h3 class="text-lg font-semibold">Skills</h3>
+              <i class="fas fa-tools text-xl sm:text-2xl text-green-500 mr-3 icon-transition"></i>
+              <h3 class="text-base sm:text-lg font-semibold">Skills</h3>
             </div>
-            <p class="text-sm">Proficient in Zoho and Odoo CRM, market analysis, cold calling, and strategic campaign collaboration for enhanced brand visibility.</p>
+            <p class="text-xs sm:text-sm text-wrap">Proficient in Zoho and Odoo CRM, market analysis, cold calling, and strategic campaign collaboration for enhanced brand visibility.</p>
           </div>
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="slide-up" data-aos-delay="600">
+          <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="slide-up" data-aos-delay="600">
             <div class="flex items-center mb-3">
-              <i class="fas fa-trophy text-2xl text-yellow-500 mr-3 icon-transition"></i>
-              <h3 class="text-lg font-semibold">Achievements</h3>
+              <i class="fas fa-trophy text-xl sm:text-2xl text-yellow-500 mr-3 icon-transition"></i>
+              <h3 class="text-base sm:text-lg font-semibold">Achievements</h3>
             </div>
-            <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="grid grid-cols-2 gap-2 sm:gap-4 text-center">
               <div>
-                <p class="text-2xl font-bold text-blue-600 counter" data-target="150">0</p>
+                <p class="text-lg sm:text-2xl font-bold text-blue-600 counter" data-target="150">0</p>
                 <p class="text-xs">B2B Leads Generated</p>
               </div>
               <div>
-                <p class="text-2xl font-bold text-green-600 counter" data-target="50">0</p>
+                <p class="text-lg sm:text-2xl font-bold text-green-600 counter" data-target="50">0</p>
                 <p class="text-xs">ERP Demos Conducted</p>
               </div>
-              <div>
-                <p class="text-2xl font-bold text-purple-600 counter" data-target="40">0</p>
+              <div class="col-span-2">
+                <p class="text-lg sm:text-2xl font-bold text-purple-600 counter" data-target="40">0</p>
                 <p class="text-xs">Client Engagement (%)</p>
               </div>
             </div>
           </div>
           <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="700">
-            <a href="https://raw.githubusercontent.com/mackwinjoy/mackwin.portfolio/bb81de3b60fb847d1b5c8ec724f9af0d606e630d/MackwinJoyResume.pdf" download class="gradient-btn px-4 py-2 rounded-full font-semibold inline-flex items-center focus:outline-none focus:ring-2 focus:ring-yellow-300 text-sm" aria-label="Download Resume">
+            <a href="https://raw.githubusercontent.com/mackwinjoy/mackwin.portfolio/bb81de3b60fb847d1b5c8ec724f9af0d606e630d/MackwinJoyResume.pdf" download class="gradient-btn px-3 sm:px-4 py-2 rounded-full font-semibold inline-flex items-center focus:outline-none focus:ring-2 focus:ring-yellow-300 text-xs sm:text-sm" aria-label="Download Resume">
               <i class="fas fa-download mr-2 icon-transition"></i> Download Resume
             </a>
           </div>
@@ -473,113 +542,113 @@
 
   <!-- Wave Separator -->
   <div class="w-full overflow-hidden leading-none">
-    <svg class="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <svg class="wave-svg h-12 sm:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
       <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#f3f4f6" class="dark:fill-gray-700"></path>
     </svg>
   </div>
 
   <!-- Skills Section -->
-  <section id="skills" class="section-padding py-12 bg-gray-100 dark:bg-gray-700 bg-section" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
+  <section id="skills" class="section-padding py-8 sm:py-12 bg-gray-100 dark:bg-gray-700 bg-section w-full overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
+    <div class="container mx-auto px-2 sm:px-4 max-w-full">
+      <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-6 sm:mb-8 flex items-center justify-center text-wrap" data-aos="zoom-in" data-aos-delay="100">
         <i class="fas fa-tools text-green-500 mr-2 icon-transition"></i> Skills
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-right" data-aos-delay="200">
-          <h3 class="text-lg font-semibold mb-3 flex items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8 max-w-full">
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-right" data-aos-delay="200">
+          <h3 class="text-base sm:text-lg font-semibold mb-3 flex items-center text-wrap">
             <i class="fas fa-chart-pie mr-2 text-blue-500 icon-transition"></i> Skill Proficiency
           </h3>
           <div class="chart-container">
             <canvas id="skillsPieChart"></canvas>
           </div>
         </div>
-        <div class="space-y-4">
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="300">
-            <p class="text-sm font-semibold flex items-center">
+        <div class="space-y-3 sm:space-y-4">
+          <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="300">
+            <p class="text-xs sm:text-sm font-semibold flex items-center text-wrap">
               <i class="fas fa-bullhorn mr-2 text-green-500 icon-transition"></i> Lead Generation
             </p>
-            <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="85"></div></div>
+            <div class="progress-bar mt-2"><div class="progress-fill" style="width: 0;" data-width="85"></div></div>
           </div>
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="400">
-            <p class="text-sm font-semibold flex items-center">
+          <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="400">
+            <p class="text-xs sm:text-sm font-semibold flex items-center text-wrap">
               <i class="fas fa-handshake mr-2 text-blue-500 icon-transition"></i> Sales Negotiation
             </p>
-            <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="80"></div></div>
+            <div class="progress-bar mt-2"><div class="progress-fill" style="width: 0;" data-width="80"></div></div>
           </div>
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="500">
-            <p class="text-sm font-semibold flex items-center">
+          <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="500">
+            <p class="text-xs sm:text-sm font-semibold flex items-center text-wrap">
               <i class="fas fa-database mr-2 text-purple-500 icon-transition"></i> CRM Tools (Zoho, Odoo)
             </p>
-            <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="90"></div></div>
+            <div class="progress-bar mt-2"><div class="progress-fill" style="width: 0;" data-width="90"></div></div>
           </div>
-          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="600">
-            <p class="text-sm font-semibold flex items-center">
+          <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-left" data-aos-delay="600">
+            <p class="text-xs sm:text-sm font-semibold flex items-center text-wrap">
               <i class="fas fa-search mr-2 text-red-500 icon-transition"></i> Market Research
             </p>
-            <div class="progress-bar"><div class="progress-fill" style="width: 0;" data-width="75"></div></div>
+            <div class="progress-bar mt-2"><div class="progress-fill" style="width: 0;" data-width="75"></div></div>
           </div>
         </div>
       </div>
-      <div class="grid skills-grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
-          <i class="fas fa-search text-2xl text-green-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Lead Generation & Prospecting</h3>
+      <div class="skills-grid max-w-full">
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-search text-xl sm:text-2xl text-green-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Lead Generation & Prospecting</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="150">
-          <i class="fas fa-handshake text-2xl text-blue-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Sales Negotiation & Deal Closure</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="150">
+          <i class="fas fa-handshake text-xl sm:text-2xl text-blue-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Sales Negotiation & Deal Closure</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
-          <i class="fas fa-briefcase text-2xl text-purple-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">B2B Sales & Strategic Partnerships</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-briefcase text-xl sm:text-2xl text-purple-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">B2B Sales & Strategic Partnerships</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="250">
-          <i class="fas fa-users text-2xl text-yellow-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Client Relationship Management</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="250">
+          <i class="fas fa-users text-xl sm:text-2xl text-yellow-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Client Relationship Management</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
-          <i class="fas fa-chart-bar text-2xl text-red-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Market Research & Competitive Analysis</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-chart-bar text-xl sm:text-2xl text-red-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Market Research & Competitive Analysis</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="350">
-          <i class="fas fa-file-alt text-2xl text-teal-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Proposal Writing & Pitching</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="350">
+          <i class="fas fa-file-alt text-xl sm:text-2xl text-teal-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Proposal Writing & Pitching</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="400">
-          <i class="fas fa-database text-2xl text-orange-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">CRM Tools (Zoho, Odoo)</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="400">
+          <i class="fas fa-database text-xl sm:text-2xl text-orange-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">CRM Tools (Zoho, Odoo)</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="450">
-          <i class="fas fa-chart-line text-2xl text-indigo-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Revenue Growth Strategy</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="450">
+          <i class="fas fa-chart-line text-xl sm:text-2xl text-indigo-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Revenue Growth Strategy</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="500">
-          <i class="fas fa-envelope text-2xl text-green-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Cold Calling & Email Campaigns</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="500">
+          <i class="fas fa-envelope text-xl sm:text-2xl text-green-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Cold Calling & Email Campaigns</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="550">
-          <i class="fas fa-table text-2xl text-blue-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Data Analysis & Reporting</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="550">
+          <i class="fas fa-table text-xl sm:text-2xl text-blue-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Data Analysis & Reporting</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="600">
-          <i class="fas fa-microphone text-2xl text-purple-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Presentation & Communication Skills</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="600">
+          <i class="fas fa-microphone text-xl sm:text-2xl text-purple-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Presentation & Communication Skills</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="650">
-          <i class="fas fa-user-check text-2xl text-yellow-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Customer-Centric Approach</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="650">
+          <i class="fas fa-user-check text-xl sm:text-2xl text-yellow-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Customer-Centric Approach</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="700">
-          <i class="fas fa-sync-alt text-2xl text-red-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Adaptability & Resilience</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="700">
+          <i class="fas fa-sync-alt text-xl sm:text-2xl text-red-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Adaptability & Resilience</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="750">
-          <i class="fas fa-users-cog text-2xl text-teal-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Team Collaboration</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="750">
+          <i class="fas fa-users-cog text-xl sm:text-2xl text-teal-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Team Collaboration</h3>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="800">
-          <i class="fas fa-clock text-2xl text-orange-500 mb-3 icon-transition"></i>
-          <h3 class="text-sm font-semibold">Time Management & Multitasking</h3>
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover" data-aos="fade-up" data-aos-delay="800">
+          <i class="fas fa-clock text-xl sm:text-2xl text-orange-500 mb-3 icon-transition"></i>
+          <h3 class="text-xs sm:text-sm font-semibold text-wrap">Time Management & Multitasking</h3>
         </div>
       </div>
     </div>
@@ -587,47 +656,47 @@
 
   <!-- Wave Separator -->
   <div class="w-full overflow-hidden leading-none">
-    <svg class="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <svg class="wave-svg h-12 sm:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
       <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#ffffff" class="dark:fill-gray-800"></path>
     </svg>
   </div>
 
   <!-- Experience Section -->
-  <section id="experience" class="section-padding py-12 bg-white dark:bg-gray-800 bg-section" style="background-image: url('https://images.unsplash.com/photo-1516321310768-90f0fdce4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
+  <section id="experience" class="section-padding py-8 sm:py-12 bg-white dark:bg-gray-800 bg-section w-full overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1516321310768-90f0fdce4b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
+    <div class="container mx-auto px-2 sm:px-4 max-w-full">
+      <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-6 sm:mb-8 flex items-center justify-center text-wrap" data-aos="zoom-in" data-aos-delay="100">
         <i class="fas fa-suitcase text-blue-500 mr-2 icon-transition"></i> Experience
       </h2>
-      <div class="space-y-6">
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-right" data-aos-delay="200">
-          <h3 class="text-lg font-semibold flex items-center">
+      <div class="space-y-4 sm:space-y-6 max-w-full">
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-right" data-aos-delay="200">
+          <h3 class="text-base sm:text-lg font-semibold flex items-center text-wrap">
             <i class="fas fa-building mr-2 text-indigo-500 icon-transition"></i> Invenger Technologies Inc.
           </h3>
-          <p class="text-gray-600 dark:text-gray-400 text-sm">Jul 2024 – Present</p>
-          <ul class="list-disc ml-6 mt-3 text-sm">
-            <li>Initiated cold calls and outreach, resulting in a 30% increase in high-quality leads and sales opportunities.</li>
-            <li>Delivered impactful presentations and product pitches to C-level executives, aligning ERP solutions with client needs.</li>
-            <li>Led comprehensive ERP software demos, emphasizing features and applications, resulting in a 40% increase in engagement.</li>
-            <li>Showcased expertise as an ERP subject matter expert, ensuring precise product knowledge during client interactions.</li>
-            <li>Collaborated with marketing teams on strategic campaigns, boosting product visibility and brand recognition.</li>
-            <li>Conducted market analysis and competitor research, refining value propositions to support sales strategies.</li>
-            <li>Maintained CRM systems to track leads, manage interactions, and generate insights for sales forecasting.</li>
+          <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">Jul 2024 – Present</p>
+          <ul class="list-disc ml-4 sm:ml-6 mt-3 text-xs sm:text-sm space-y-1">
+            <li class="text-wrap">Initiated cold calls and outreach, resulting in a 30% increase in high-quality leads and sales opportunities.</li>
+            <li class="text-wrap">Delivered impactful presentations and product pitches to C-level executives, aligning ERP solutions with client needs.</li>
+            <li class="text-wrap">Led comprehensive ERP software demos, emphasizing features and applications, resulting in a 40% increase in engagement.</li>
+            <li class="text-wrap">Showcased expertise as an ERP subject matter expert, ensuring precise product knowledge during client interactions.</li>
+            <li class="text-wrap">Collaborated with marketing teams on strategic campaigns, boosting product visibility and brand recognition.</li>
+            <li class="text-wrap">Conducted market analysis and competitor research, refining value propositions to support sales strategies.</li>
+            <li class="text-wrap">Maintained CRM systems to track leads, manage interactions, and generate insights for sales forecasting.</li>
           </ul>
         </div>
-        <div class="chart-section" data-aos="fade-up" data-aos-delay="300">
+        <div class="chart-section max-w-full" data-aos="fade-up" data-aos-delay="300">
           <div class="chart-container">
             <canvas id="experienceBarChart"></canvas>
           </div>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="400">
-          <h3 class="text-lg font-semibold flex items-center">
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="400">
+          <h3 class="text-base sm:text-lg font-semibold flex items-center text-wrap">
             <i class="fas fa-building mr-2 text-indigo-500 icon-transition"></i> Acrene Solutions Private Limited
           </h3>
-          <p class="text-gray-600 dark:text-gray-400 text-sm">Previous Role</p>
-          <ul class="list-disc ml-6 mt-3 text-sm">
-            <li>Recorded and organized cash/bank transactions using Zoho Books.</li>
-            <li>Tracked and managed operational expenses.</li>
-            <li>Generated leads through social media platforms.</li>
+          <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">Previous Role</p>
+          <ul class="list-disc ml-4 sm:ml-6 mt-3 text-xs sm:text-sm space-y-1">
+            <li class="text-wrap">Recorded and organized cash/bank transactions using Zoho Books.</li>
+            <li class="text-wrap">Tracked and managed operational expenses.</li>
+            <li class="text-wrap">Generated leads through social media platforms.</li>
           </ul>
         </div>
       </div>
@@ -636,30 +705,30 @@
 
   <!-- Wave Separator -->
   <div class="w-full overflow-hidden leading-none">
-    <svg class="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <svg class="wave-svg h-12 sm:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
       <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#f3f4f6" class="dark:fill-gray-700"></path>
     </svg>
   </div>
 
   <!-- Education & Certifications Section -->
-  <section id="education" class="section-padding py-12 bg-gray-100 dark:bg-gray-700 bg-section" style="background-image: url('https://images.unsplash.com/photo-1524178232363-64f36cf33d79?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
-    <div class="container mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
+  <section id="education" class="section-padding py-8 sm:py-12 bg-gray-100 dark:bg-gray-700 bg-section w-full overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1524178232363-64f36cf33d79?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');" data-aos="fade-in">
+    <div class="container mx-auto px-2 sm:px-4 max-w-full">
+      <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-center mb-6 sm:mb-8 flex items-center justify-center text-wrap" data-aos="zoom-in" data-aos-delay="100">
         <i class="fas fa-graduation-cap text-purple-500 mr-2 icon-transition"></i> Education & Certifications
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-right" data-aos-delay="200">
-          <h3 class="text-lg font-semibold flex items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 max-w-full">
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-right" data-aos-delay="200">
+          <h3 class="text-base sm:text-lg font-semibold flex items-center text-wrap">
             <i class="fas fa-university mr-2 text-blue-500 icon-transition"></i> Education
           </h3>
-          <p class="mt-2 text-sm"><strong>MBA (Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
-          <p class="mt-2 text-sm"><strong>Bachelor of Commerce</strong> - MGM College, Udupi (2019–2022) | 74.4%</p>
+          <p class="mt-2 text-xs sm:text-sm text-wrap"><strong>MBA (Marketing)</strong> - Sahyadri College (2022–2024) | CGPA: 8.46</p>
+          <p class="mt-2 text-xs sm:text-sm text-wrap"><strong>Bachelor of Commerce</strong> - MGM College, Udupi (2019–2022) | 74.4%</p>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="300">
-          <h3 class="text-lg font-semibold flex items-center">
+        <div class="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-lg card-hover bg-opacity-90" data-aos="slide-left" data-aos-delay="300">
+          <h3 class="text-base sm:text-lg font-semibold flex items-center text-wrap">
             <i class="fas fa-certificate mr-2 text-green-500 icon-transition"></i> Certifications
           </h3>
-          <ul class="list-disc ml-6 mt-3 text-sm">
+          <ul class="list-disc ml-4 sm:ml-6 mt-3 text-xs sm:text-sm space-y-1">
             <li>Power BI</li>
             <li>SPSS</li>
             <li>Advanced Microsoft Excel</li>
@@ -672,51 +741,52 @@
 
   <!-- Wave Separator -->
   <div class="w-full overflow-hidden leading-none">
-    <svg class="w-full h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <svg class="wave-svg h-12 sm:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none">
       <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113.64,0,1200,0Z" fill="#4b5bd4" class="dark:fill-gray-900"></path>
     </svg>
   </div>
 
   <!-- Contact Section with Lottie -->
-  <section id="contact" class="section-padding py-12 text-white contact-section w-full" style="background: linear-gradient(45deg, #4b5bd4, #6a1b9a, #4b5bd4); background-size: 200% 200%; animation: backgroundWave 15s ease infinite;" data-aos="fade-in">
-    <div class="container mx-auto px-0 text-center">
-      <h2 class="text-2xl sm:text-3xl font-bold mb-8 flex items-center justify-center" data-aos="zoom-in" data-aos-delay="100">
+  <section id="contact" class="section-padding py-8 sm:py-12 text-white contact-section w-full overflow-hidden" style="background: linear-gradient(45deg, #4b5bd4, #6a1b9a, #4b5bd4); background-size: 200% 200%; animation: backgroundWave 15s ease infinite;" data-aos="fade-in">
+    <div class="container mx-auto px-2 sm:px-4 text-center max-w-full">
+      <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold mb-6 sm:mb-8 flex items-center justify-center text-wrap" data-aos="zoom-in" data-aos-delay="100">
         <i class="fas fa-envelope-open-text text-yellow-400 mr-2 icon-transition"></i> Contact Me
       </h2>
-      <div class="lottie-animation mb-6" id="contact-lottie" data-aos="fade-up" data-aos-delay="200"></div>
-      <div class="flex flex-col items-center space-y-3" data-aos="fade-up" data-aos-delay="300">
-        <p class="flex items-center text-sm">
-          <i class="fas fa-envelope mr-2 text-green-400 icon-transition"></i>
+      <div class="lottie-animation mb-4 sm:mb-6" id="contact-lottie" data-aos="fade-up" data-aos-delay="200"></div>
+      <div class="flex flex-col items-center space-y-2 sm:space-y-3 max-w-full" data-aos="fade-up" data-aos-delay="300">
+        <p class="flex items-center text-xs sm:text-sm text-wrap break-all">
+          <i class="fas fa-envelope mr-2 text-green-400 icon-transition flex-shrink-0"></i>
           <a href="mailto:dsouzamackwinjoy@gmail.com" class="hover:text-yellow-300 hover:underline transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="Email Mackwin Joy Dsouza">dsouzamackwinjoy@gmail.com</a>
         </p>
-        <p class="flex items-center text-sm">
+        <p class="flex items-center text-xs sm:text-sm">
           <i class="fas fa-phone mr-2 text-blue-400 icon-transition"></i> 9901179203
         </p>
-        <p class="flex items-center text-sm">
+        <p class="flex items-center text-xs sm:text-sm">
           <i class="fas fa-passport mr-2 text-purple-400 icon-transition"></i>
           <span class="hover:text-yellow-300 hover:underline transition-all duration-300">Y4773735</span>
         </p>
-        <p class="flex items-center text-sm">
-          <i class="fas fa-map-marker-alt mr-2 text-red-400 icon-transition"></i> Sunview Posarma House, Pilar Village, Mudarangadi
+        <p class="flex items-center text-xs sm:text-sm text-wrap text-center">
+          <i class="fas fa-map-marker-alt mr-2 text-red-400 icon-transition flex-shrink-0"></i> 
+          <span>Sunview Posarma House, Pilar Village, Mudarangadi</span>
         </p>
-        <p class="flex items-center text-sm">
-          <i class="fab fa-linkedin mr-2 text-indigo-400 icon-transition"></i>
+        <p class="flex items-center text-xs sm:text-sm text-wrap break-all">
+          <i class="fab fa-linkedin mr-2 text-indigo-400 icon-transition flex-shrink-0"></i>
           <a href="https://www.linkedin.com/in/mackwin-joy-dsouza" target="_blank" class="underline hover:text-yellow-300 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-300" aria-label="LinkedIn Profile">mackwin-joy-dsouza</a>
         </p>
       </div>
-      <div class="mt-6" data-aos="fade-up" data-aos-delay="400">
-        <h3 class="text-lg font-semibold mb-3 flex items-center justify-center">
+      <div class="mt-4 sm:mt-6" data-aos="fade-up" data-aos-delay="400">
+        <h3 class="text-base sm:text-lg font-semibold mb-3 flex items-center justify-center text-wrap">
           <i class="fas fa-language mr-2 text-orange-400 icon-transition"></i> Languages
         </h3>
-        <p class="text-sm">English, Hindi, Kannada</p>
+        <p class="text-xs sm:text-sm">English, Hindi, Kannada</p>
       </div>
     </div>
   </section>
 
-  <!-- Footer (Animation Removed) -->
-  <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
-    <div class="container mx-auto px-4 text-center">
-      <p class="flex items-center justify-center text-sm">
+  <!-- Footer -->
+  <footer class="bg-gray-800 dark:bg-gray-950 text-white py-4 sm:py-6 w-full overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+    <div class="container mx-auto px-2 sm:px-4 text-center max-w-full">
+      <p class="flex items-center justify-center text-xs sm:text-sm text-wrap">
         <i class="fas fa-copyright mr-2 icon-transition"></i> © 2025 Mackwin Joy Dsouza. All rights reserved.
       </p>
     </div>
@@ -843,9 +913,9 @@
             labels: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
               font: {
-                size: window.innerWidth < 480 ? 10 : 12
+                size: window.innerWidth < 480 ? 8 : window.innerWidth < 768 ? 10 : 12
               },
-              padding: window.innerWidth < 480 ? 10 : 20
+              padding: window.innerWidth < 480 ? 8 : window.innerWidth < 768 ? 12 : 20
             }
           }
         },
@@ -855,10 +925,10 @@
         },
         layout: {
           padding: {
-            top: 10,
-            bottom: 10,
-            left: 10,
-            right: 10
+            top: 5,
+            bottom: 5,
+            left: 5,
+            right: 5
           }
         }
       }
@@ -887,7 +957,7 @@
             ticks: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
               font: {
-                size: window.innerWidth < 480 ? 8 : 10
+                size: window.innerWidth < 480 ? 8 : window.innerWidth < 768 ? 10 : 12
               }
             }
           },
@@ -895,7 +965,7 @@
             ticks: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
               font: {
-                size: window.innerWidth < 480 ? 8 : 10
+                size: window.innerWidth < 480 ? 8 : window.innerWidth < 768 ? 10 : 12
               }
             }
           }
@@ -905,7 +975,7 @@
             labels: {
               color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
               font: {
-                size: window.innerWidth < 480 ? 10 : 12
+                size: window.innerWidth < 480 ? 8 : window.innerWidth < 768 ? 10 : 12
               }
             }
           }
@@ -916,13 +986,19 @@
         },
         layout: {
           padding: {
-            top: 10,
-            bottom: 10,
-            left: 10,
-            right: 10
+            top: 5,
+            bottom: 5,
+            left: 5,
+            right: 5
           }
         }
       }
+    });
+
+    // Handle window resize for charts
+    window.addEventListener('resize', function() {
+      skillsPieChart.resize();
+      experienceBarChart.resize();
     });
   </script>
 </body>
